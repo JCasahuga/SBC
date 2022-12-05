@@ -1,0 +1,7 @@
+owl2clips --input ontologia_sbc.owl --format turtle
+
+clips
+(load "./ontologia_sbc.clp")
+(load "./kbs.clp")
+(reset)
+(run)
