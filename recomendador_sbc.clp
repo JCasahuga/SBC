@@ -63,3 +63,11 @@
 	)
 	?respuesta
 )
+
+; ////////////////////             QUESTIONS                  ///////////////////////////
+
+(defrule p_nombre "Pregunta el nom"
+  (printout t "Quin es el teu nom?")
+  (bind ?nombre (read))
+  (send ?x put-nom ?nombre)
+)
