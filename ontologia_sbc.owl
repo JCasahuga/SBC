@@ -39,6 +39,13 @@
           rdfs:range xsd:boolean .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#altura
+:altura rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:domain :Persona ;
+        rdfs:range xsd:integer .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#calentamiento
 :calentamiento rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
@@ -71,6 +78,13 @@
                     :Enfermedad ,
                     :Persona ;
         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#peso
+:peso rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:domain :Persona ;
+      rdfs:range xsd:double .
 
 
 #################################################################
@@ -107,11 +121,6 @@
         rdfs:subClassOf :Ejercicio .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mental
-:Mental rdf:type owl:Class ;
-        rdfs:subClassOf :Enfermedad .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mobilidad
 :Mobilidad rdf:type owl:Class ;
            rdfs:subClassOf :Enfermedad .
@@ -127,6 +136,11 @@
          rdfs:subClassOf owl:Thing .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Psicologica
+:Psicologica rdf:type owl:Class ;
+             rdfs:subClassOf :Enfermedad .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Resistencia
 :Resistencia rdf:type owl:Class ;
              rdfs:subClassOf :Ejercicio .
@@ -138,7 +152,7 @@
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ansiedad
 :Ansiedad rdf:type owl:NamedIndividual ,
-                   :Mental .
+                   :Psicologica .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bailar
@@ -171,6 +185,11 @@
                  :Otros .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiopatía
+:Cardiopatía rdf:type owl:NamedIndividual ,
+                      :Cardiorespiratoria .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
 :Correr rdf:type owl:NamedIndividual ,
                  :Resistencia .
@@ -183,7 +202,7 @@
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Depresion
 :Depresion rdf:type owl:NamedIndividual ,
-                    :Mental .
+                    :Psicologica .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Diabetes
@@ -228,7 +247,7 @@
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estres
 :Estres rdf:type owl:NamedIndividual ,
-                 :Mental .
+                 :Psicologica .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
