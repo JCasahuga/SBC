@@ -18,6 +18,7 @@
 	(printout t crlf crlf)
 	(printout t "Bienvenido al recomendador de ejercicios para personas mayores!")
 	(printout t crlf crlf)
+  (assert (nuevoUsuario))
 	(focus QUESTIONS)
 )
 
@@ -66,8 +67,11 @@
 
 ; ////////////////////             QUESTIONS                  ///////////////////////////
 
-(defrule p_nombre "Pregunta el nom"
-  (printout t "Quin es el teu nom?")
+(defrule p_nombre "Pregunta el nombre"
+  (nuevoUsuario)
+  ?x <- (object(is-a Persona))
+  =>
+  (printout t "Como se llama usted?" crlf)
   (bind ?nombre (read))
-  (send ?x put-nom ?nombre)
+  (send ?x put-nombre ?nombre)
 )
