@@ -69,10 +69,11 @@
 
 (defrule p_nombre "Pregunta el nombre"
   (nuevoUsuario)
-  ?x <- (object(is-a Persona))
+  ?p <- (object(is-a Persona))
   =>
   (printout t "Como se llama usted?" crlf)
   (bind ?nombre (read))
+<<<<<<< HEAD
   (send ?x put-nombre ?nombre)
 )
 
@@ -128,3 +129,7 @@
 ;  )
 ;  (send ?x put-actividad ?actividad)
 ;)
+=======
+  (send ?p put-nombre ?nombre)
+)
+>>>>>>> 10786c1 (persona)
