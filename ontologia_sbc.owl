@@ -91,9 +91,29 @@
 #    Classes
 #################################################################
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bailar
+:Bailar rdf:type owl:Class ;
+        rdfs:subClassOf :Resistencia .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bicicleta
+:Bicicleta rdf:type owl:Class ;
+           rdfs:subClassOf :Resistencia .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
+:Caminar rdf:type owl:Class ;
+         rdfs:subClassOf :Resistencia .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiorespiratoria
 :Cardiorespiratoria rdf:type owl:Class ;
                     rdfs:subClassOf :Enfermedad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
+:Correr rdf:type owl:Class ;
+        rdfs:subClassOf :Resistencia .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio
@@ -126,6 +146,11 @@
            rdfs:subClassOf :Enfermedad .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natacion
+:Natacion rdf:type owl:Class ;
+          rdfs:subClassOf :Resistencia .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Otros
 :Otros rdf:type owl:Class ;
        rdfs:subClassOf :Enfermedad .
@@ -141,9 +166,19 @@
              rdfs:subClassOf :Enfermedad .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Remo
+:Remo rdf:type owl:Class ;
+      rdfs:subClassOf :Resistencia .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Resistencia
 :Resistencia rdf:type owl:Class ;
              rdfs:subClassOf :Ejercicio .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Subir_escaleras
+:Subir_escaleras rdf:type owl:Class ;
+                 rdfs:subClassOf :Resistencia .
 
 
 #################################################################
@@ -153,16 +188,6 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ansiedad
 :Ansiedad rdf:type owl:NamedIndividual ,
                    :Psicologica .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bailar
-:Bailar rdf:type owl:NamedIndividual ,
-                 :Resistencia .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bicicleta
-:Bicicleta rdf:type owl:NamedIndividual ,
-                    :Resistencia .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
@@ -175,11 +200,6 @@
                  :Mobilidad .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
-:Caminar rdf:type owl:NamedIndividual ,
-                  :Resistencia .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cancer
 :Cancer rdf:type owl:NamedIndividual ,
                  :Otros .
@@ -188,11 +208,6 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiopatía
 :Cardiopatía rdf:type owl:NamedIndividual ,
                       :Cardiorespiratoria .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
-:Correr rdf:type owl:NamedIndividual ,
-                 :Resistencia .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello_Hombros
@@ -310,11 +325,6 @@
                       :Mobilidad .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natacion
-:Natacion rdf:type owl:NamedIndividual ,
-                   :Resistencia .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Obesidad
 :Obesidad rdf:type owl:NamedIndividual ,
                    :Otros .
@@ -330,19 +340,21 @@
                         :Mobilidad .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Remo
-:Remo rdf:type owl:NamedIndividual ,
-               :Resistencia .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Subir_escaleras
-:Subir_escaleras rdf:type owl:NamedIndividual ,
-                          :Resistencia .
-
-
 #################################################################
 #    General axioms
 #################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Bailar
+                :Bicicleta
+                :Caminar
+                :Correr
+                :Natacion
+                :Remo
+                :Subir_escaleras
+              )
+] .
+
 
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Equilibrio
