@@ -15,8 +15,14 @@
 (defrule startup "Da la bienvenida al programa"
   (initial-fact)
   =>
+  (printout t crlf crlf)
+	(printout t "**************************************************************************************************************"crlf)
+	(printout t "*                                          AUTO DIAGNOSTIC                                                   *"crlf)
+	(printout t "*                      Bienvenido al recomendador de ejercicios para personas mayores!             					*"crlf)
+	(printout t "**************************************************************************************************************"crlf)
 	(printout t crlf crlf)
-	(printout t "Bienvenido al recomendador de ejercicios para personas mayores!")
+	(printout t crlf crlf)
+	(printout t "")
 	(printout t crlf crlf)
   (assert (nuevoUsuario))
 	(focus QUESTIONS)
