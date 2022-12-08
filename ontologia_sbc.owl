@@ -10,6 +10,22 @@
                                                                                rdfs:comment "Ontologia de la pràctica de SBC (recomendació d'exercicis a gent gran)" .
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#string
+xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                 owl:oneOf [ rdf:type rdf:List ;
+                                             rdf:first "ansiedad" ;
+                                             rdf:rest [ rdf:type rdf:List ;
+                                                        rdf:first "depresion" ;
+                                                        rdf:rest rdf:nil
+                                                      ]
+                                           ]
+                               ] .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -74,10 +90,19 @@
 :nombre rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf owl:topDataProperty ;
         rdf:type owl:FunctionalProperty ;
-        rdfs:domain :Ejercicio ,
+        rdfs:domain :Cardiorespiratoria ,
+                    :Ejercicio ,
                     :Enfermedad ,
                     :Persona ;
-        rdfs:range xsd:string .
+        rdfs:range [ rdf:type rdfs:Datatype ;
+                     owl:oneOf [ rdf:type rdf:List ;
+                                 rdf:first "bye" ;
+                                 rdf:rest [ rdf:type rdf:List ;
+                                            rdf:first "hello" ;
+                                            rdf:rest rdf:nil
+                                          ]
+                               ]
+                   ] .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#peso

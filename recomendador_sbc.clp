@@ -133,10 +133,11 @@
 (defrule p_corazon "Pregunta problemas del corazón"
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
+  ?cardiopatia <- (object(is-a Cardiorespiratoria))
 	=>
 	(bind ?ans (yes-or-no-p "Ha padecido (o padece) problemas del corazón? (si/no): "))
 	(if (eq ?ans TRUE) then
-		; TODO: no se com podem guardar per indicar-ho
+		(bind ?cardiopatia TRUE)
     (bind ?ans (yes-or-no-p "Tiene usted hipertensión? (si/no): "))
     ;(send ?p put-edad ?ans)
 	)
@@ -192,6 +193,7 @@
 	(nuevoUsuario)
   ?p <- (object(is-a Persona))
 	=>
+  (?cardio)
 	(bind ?ans (ask-question "Cuantos días a la semana podria relizar el programa personalizado? " 0 1 2 3 4 5 6 7))
 	(if (< ?ans 3) then 
     (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento para menos de 3 días por semana." crlf)
