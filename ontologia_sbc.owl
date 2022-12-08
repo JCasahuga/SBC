@@ -32,8 +32,8 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#esta_recomendado_para
 :esta_recomendado_para rdf:type owl:ObjectProperty ,
                                 owl:FunctionalProperty ;
-                       rdfs:domain :Ejercicio ;
-                       rdfs:range :Enfermedad .
+                       rdfs:domain :Ejercicio_biceps ;
+                       rdfs:range :Brazos .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#sufre
@@ -126,6 +126,16 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
            rdfs:subClassOf :Resistencia .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
+:Brazos rdf:type owl:Class ;
+        rdfs:subClassOf :Partes_cuerpo .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cadera
+:Cadera rdf:type owl:Class ;
+        rdfs:subClassOf :Partes_cuerpo .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
 :Caminar rdf:type owl:Class ;
          rdfs:subClassOf :Resistencia .
@@ -139,6 +149,11 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
 :Correr rdf:type owl:Class ;
         rdfs:subClassOf :Resistencia .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello
+:Cuello rdf:type owl:Class ;
+        rdfs:subClassOf :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio
@@ -164,6 +179,11 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Equilibrio
 :Equilibrio rdf:type owl:Class ;
             rdfs:subClassOf :Ejercicio .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Espalda
+:Espalda rdf:type owl:Class ;
+         rdfs:subClassOf :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
@@ -241,6 +261,11 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
                  rdfs:subClassOf :Fuerza .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Manos
+:Manos rdf:type owl:Class ;
+       rdfs:subClassOf :Partes_cuerpo .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mobilidad
 :Mobilidad rdf:type owl:Class ;
            rdfs:subClassOf :Enfermedad .
@@ -256,9 +281,23 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
        rdfs:subClassOf :Enfermedad .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Partes_cuerpo
+:Partes_cuerpo rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Persona
 :Persona rdf:type owl:Class ;
          rdfs:subClassOf owl:Thing .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Piernas
+:Piernas rdf:type owl:Class ;
+         rdfs:subClassOf :Partes_cuerpo .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Pies
+:Pies rdf:type owl:Class ;
+      rdfs:subClassOf :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Psicologica
@@ -291,13 +330,11 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
-:Brazos rdf:type owl:NamedIndividual ,
-                 :Mobilidad .
+:Brazos rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cadera
-:Cadera rdf:type owl:NamedIndividual ,
-                 :Mobilidad .
+:Cadera rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cancer
@@ -311,8 +348,7 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello_Hombros
-:Cuello_Hombros rdf:type owl:NamedIndividual ,
-                         :Mobilidad .
+:Cuello_Hombros rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Depresion
@@ -341,13 +377,11 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
-:Lumbar_Espalda rdf:type owl:NamedIndividual ,
-                         :Mobilidad .
+:Lumbar_Espalda rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mano_Muñeca
-:Mano_Muñeca rdf:type owl:NamedIndividual ,
-                      :Mobilidad .
+:Mano_Muñeca rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Obesidad
@@ -356,13 +390,11 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Piernas
-:Piernas rdf:type owl:NamedIndividual ,
-                  :Mobilidad .
+:Piernas rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Pies_Tobillos
-:Pies_Tobillos rdf:type owl:NamedIndividual ,
-                        :Mobilidad .
+:Pies_Tobillos rdf:type owl:NamedIndividual .
 
 
 #################################################################
@@ -377,6 +409,18 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
                 :Natacion
                 :Remo
                 :Subir_escaleras
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Brazos
+                :Cadera
+                :Cuello
+                :Espalda
+                :Manos
+                :Piernas
+                :Pies
               )
 ] .
 
