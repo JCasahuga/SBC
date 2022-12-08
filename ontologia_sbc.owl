@@ -121,6 +121,16 @@
            rdfs:subClassOf owl:Thing .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio_biceps
+:Ejercicio_biceps rdf:type owl:Class ;
+                  rdfs:subClassOf :Fuerza .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
+:Elevacion_piernas rdf:type owl:Class ;
+                   rdfs:subClassOf :Fuerza .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Enfermedad
 :Enfermedad rdf:type owl:Class ;
             rdfs:subClassOf owl:Thing .
@@ -131,14 +141,79 @@
             rdfs:subClassOf :Ejercicio .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
+:Estiramiento_cuadriceps rdf:type owl:Class ;
+                         rdfs:subClassOf :Flexibilidad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquiotibiales
+:Estiramiento_isquiotibiales rdf:type owl:Class ;
+                             rdfs:subClassOf :Flexibilidad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
+:Estiramiento_muñeca rdf:type owl:Class ;
+                     rdfs:subClassOf :Flexibilidad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
+:Estiramiento_tobillos rdf:type owl:Class ;
+                       rdfs:subClassOf :Flexibilidad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
+:Estiramiento_triceps rdf:type owl:Class ;
+                      rdfs:subClassOf :Flexibilidad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
+:Extension_cadera rdf:type owl:Class ;
+                  rdfs:subClassOf :Fuerza .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_rodilla
+:Extension_rodilla rdf:type owl:Class ;
+                   rdfs:subClassOf :Fuerza .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_triceps
+:Extension_triceps rdf:type owl:Class ;
+                   rdfs:subClassOf :Fuerza .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexibilidad
 :Flexibilidad rdf:type owl:Class ;
               rdfs:subClassOf :Ejercicio .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
+:Flexion_cadera rdf:type owl:Class ;
+                rdfs:subClassOf :Flexibilidad .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
+:Flexion_hombros rdf:type owl:Class ;
+                 rdfs:subClassOf :Fuerza .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
+:Flexion_plantar rdf:type owl:Class ;
+                 rdfs:subClassOf :Equilibrio .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
+:Flexion_tronco rdf:type owl:Class ;
+                rdfs:subClassOf :Flexibilidad .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Fuerza
 :Fuerza rdf:type owl:Class ;
         rdfs:subClassOf :Ejercicio .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
+:Levantar_brazos rdf:type owl:Class ;
+                 rdfs:subClassOf :Fuerza .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mobilidad
@@ -225,79 +300,9 @@
                    :Otros .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio_biceps
-:Ejercicio_biceps rdf:type owl:NamedIndividual ,
-                           :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
-:Elevacion_piernas rdf:type owl:NamedIndividual ,
-                            :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
-:Estiramiento_cuadriceps rdf:type owl:NamedIndividual ,
-                                  :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquitibiales
-:Estiramiento_isquitibiales rdf:type owl:NamedIndividual ,
-                                     :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
-:Estiramiento_muñeca rdf:type owl:NamedIndividual ,
-                              :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
-:Estiramiento_tobillos rdf:type owl:NamedIndividual ,
-                                :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
-:Estiramiento_triceps rdf:type owl:NamedIndividual ,
-                               :Flexibilidad .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estres
 :Estres rdf:type owl:NamedIndividual ,
                  :Psicologica .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
-:Extension_cadera rdf:type owl:NamedIndividual ,
-                           :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_rodilla
-:Extension_rodilla rdf:type owl:NamedIndividual ,
-                            :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_triceps
-:Extension_triceps rdf:type owl:NamedIndividual ,
-                            :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
-:Flexion_cadera rdf:type owl:NamedIndividual ,
-                         :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
-:Flexion_hombros rdf:type owl:NamedIndividual ,
-                          :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
-:Flexion_plantar rdf:type owl:NamedIndividual ,
-                          :Equilibrio .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
-:Flexion_tronco rdf:type owl:NamedIndividual ,
-                         :Flexibilidad .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertension
@@ -308,11 +313,6 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Jubilado
 :Jubilado rdf:type owl:NamedIndividual ,
                    :Persona .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
-:Levantar_brazos rdf:type owl:NamedIndividual ,
-                          :Fuerza .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
@@ -357,10 +357,34 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Ejercicio_biceps
+                :Elevacion_piernas
+                :Extension_cadera
+                :Extension_rodilla
+                :Extension_triceps
+                :Flexion_hombros
+                :Levantar_brazos
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Equilibrio
                 :Flexibilidad
                 :Fuerza
                 :Resistencia
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Estiramiento_cuadriceps
+                :Estiramiento_isquiotibiales
+                :Estiramiento_muñeca
+                :Estiramiento_tobillos
+                :Estiramiento_triceps
+                :Flexion_cadera
+                :Flexion_tronco
               )
 ] .
 
