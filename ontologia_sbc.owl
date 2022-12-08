@@ -10,30 +10,18 @@
                                                                                rdfs:comment "Ontologia de la pràctica de SBC (recomendació d'exercicis a gent gran)" .
 
 #################################################################
-#    Datatypes
-#################################################################
-
-###  http://www.w3.org/2001/XMLSchema#string
-xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
-                                 owl:oneOf [ rdf:type rdf:List ;
-                                             rdf:first "ansiedad" ;
-                                             rdf:rest [ rdf:type rdf:List ;
-                                                        rdf:first "depresion" ;
-                                                        rdf:rest rdf:nil
-                                                      ]
-                                           ]
-                               ] .
-
-
-#################################################################
 #    Object Properties
 #################################################################
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#ejercita
+:ejercita rdf:type owl:ObjectProperty .
+
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#esta_recomendado_para
 :esta_recomendado_para rdf:type owl:ObjectProperty ,
                                 owl:FunctionalProperty ;
-                       rdfs:domain :Ejercicio_biceps ;
-                       rdfs:range :Brazos .
+                       rdfs:domain :Ejercicio ;
+                       rdfs:range :Enfermedad .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#sufre
@@ -90,19 +78,10 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :nombre rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf owl:topDataProperty ;
         rdf:type owl:FunctionalProperty ;
-        rdfs:domain :Cardiorespiratoria ,
-                    :Ejercicio ,
+        rdfs:domain :Ejercicio ,
                     :Enfermedad ,
                     :Persona ;
-        rdfs:range [ rdf:type rdfs:Datatype ;
-                     owl:oneOf [ rdf:type rdf:List ;
-                                 rdf:first "bye" ;
-                                 rdf:rest [ rdf:type rdf:List ;
-                                            rdf:first "hello" ;
-                                            rdf:rest rdf:nil
-                                          ]
-                               ]
-                   ] .
+        rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#peso
@@ -116,59 +95,14 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bailar
-:Bailar rdf:type owl:Class ;
-        rdfs:subClassOf :Resistencia .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bicicleta
-:Bicicleta rdf:type owl:Class ;
-           rdfs:subClassOf :Resistencia .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
-:Brazos rdf:type owl:Class ;
-        rdfs:subClassOf :Partes_cuerpo .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cadera
-:Cadera rdf:type owl:Class ;
-        rdfs:subClassOf :Partes_cuerpo .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
-:Caminar rdf:type owl:Class ;
-         rdfs:subClassOf :Resistencia .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiorespiratoria
 :Cardiorespiratoria rdf:type owl:Class ;
                     rdfs:subClassOf :Enfermedad .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
-:Correr rdf:type owl:Class ;
-        rdfs:subClassOf :Resistencia .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello
-:Cuello rdf:type owl:Class ;
-        rdfs:subClassOf :Partes_cuerpo .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio
 :Ejercicio rdf:type owl:Class ;
            rdfs:subClassOf owl:Thing .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio_biceps
-:Ejercicio_biceps rdf:type owl:Class ;
-                  rdfs:subClassOf :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
-:Elevacion_piernas rdf:type owl:Class ;
-                   rdfs:subClassOf :Fuerza .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Enfermedad
@@ -181,74 +115,9 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
             rdfs:subClassOf :Ejercicio .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Espalda
-:Espalda rdf:type owl:Class ;
-         rdfs:subClassOf :Partes_cuerpo .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
-:Estiramiento_cuadriceps rdf:type owl:Class ;
-                         rdfs:subClassOf :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquiotibiales
-:Estiramiento_isquiotibiales rdf:type owl:Class ;
-                             rdfs:subClassOf :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
-:Estiramiento_muñeca rdf:type owl:Class ;
-                     rdfs:subClassOf :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
-:Estiramiento_tobillos rdf:type owl:Class ;
-                       rdfs:subClassOf :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
-:Estiramiento_triceps rdf:type owl:Class ;
-                      rdfs:subClassOf :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
-:Extension_cadera rdf:type owl:Class ;
-                  rdfs:subClassOf :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_rodilla
-:Extension_rodilla rdf:type owl:Class ;
-                   rdfs:subClassOf :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_triceps
-:Extension_triceps rdf:type owl:Class ;
-                   rdfs:subClassOf :Fuerza .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexibilidad
 :Flexibilidad rdf:type owl:Class ;
               rdfs:subClassOf :Ejercicio .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
-:Flexion_cadera rdf:type owl:Class ;
-                rdfs:subClassOf :Flexibilidad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
-:Flexion_hombros rdf:type owl:Class ;
-                 rdfs:subClassOf :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
-:Flexion_plantar rdf:type owl:Class ;
-                 rdfs:subClassOf :Equilibrio .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
-:Flexion_tronco rdf:type owl:Class ;
-                rdfs:subClassOf :Flexibilidad .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Fuerza
@@ -256,24 +125,9 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
         rdfs:subClassOf :Ejercicio .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
-:Levantar_brazos rdf:type owl:Class ;
-                 rdfs:subClassOf :Fuerza .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Manos
-:Manos rdf:type owl:Class ;
-       rdfs:subClassOf :Partes_cuerpo .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mobilidad
 :Mobilidad rdf:type owl:Class ;
            rdfs:subClassOf :Enfermedad .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natacion
-:Natacion rdf:type owl:Class ;
-          rdfs:subClassOf :Resistencia .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Otros
@@ -290,34 +144,14 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
          rdfs:subClassOf owl:Thing .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Piernas
-:Piernas rdf:type owl:Class ;
-         rdfs:subClassOf :Partes_cuerpo .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Pies
-:Pies rdf:type owl:Class ;
-      rdfs:subClassOf :Partes_cuerpo .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Psicologica
 :Psicologica rdf:type owl:Class ;
              rdfs:subClassOf :Enfermedad .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Remo
-:Remo rdf:type owl:Class ;
-      rdfs:subClassOf :Resistencia .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Resistencia
 :Resistencia rdf:type owl:Class ;
              rdfs:subClassOf :Ejercicio .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Subir_escaleras
-:Subir_escaleras rdf:type owl:Class ;
-                 rdfs:subClassOf :Resistencia .
 
 
 #################################################################
@@ -329,12 +163,46 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
                    :Psicologica .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bailar
+:Bailar rdf:type owl:NamedIndividual ,
+                 :Resistencia ;
+        :ejercita :Brazos ,
+                  :Cadera ,
+                  :Cuello_Hombros ,
+                  :Lumbar_Espalda ,
+                  :Mano_Muñeca ,
+                  :Piernas ,
+                  :Pies_Tobillos .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bicicleta
+:Bicicleta rdf:type owl:NamedIndividual ,
+                    :Resistencia ;
+           :ejercita :Cadera ,
+                     :Lumbar_Espalda ,
+                     :Piernas ,
+                     :Pies_Tobillos .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
-:Brazos rdf:type owl:NamedIndividual .
+:Brazos rdf:type owl:NamedIndividual ,
+                 :Mobilidad ,
+                 :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cadera
-:Cadera rdf:type owl:NamedIndividual .
+:Cadera rdf:type owl:NamedIndividual ,
+                 :Mobilidad ,
+                 :Partes_cuerpo .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
+:Caminar rdf:type owl:NamedIndividual ,
+                  :Resistencia ;
+         :ejercita :Cadera ,
+                   :Lumbar_Espalda ,
+                   :Piernas ,
+                   :Pies_Tobillos .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cancer
@@ -347,8 +215,20 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
                       :Cardiorespiratoria .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
+:Correr rdf:type owl:NamedIndividual ,
+                 :Resistencia ;
+        :ejercita :Brazos ,
+                  :Cadera ,
+                  :Lumbar_Espalda ,
+                  :Piernas ,
+                  :Pies_Tobillos .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello_Hombros
-:Cuello_Hombros rdf:type owl:NamedIndividual .
+:Cuello_Hombros rdf:type owl:NamedIndividual ,
+                         :Mobilidad ,
+                         :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Depresion
@@ -361,9 +241,95 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
                    :Otros .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio_biceps
+:Ejercicio_biceps rdf:type owl:NamedIndividual ,
+                           :Fuerza ;
+                  :ejercita :Brazos .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
+:Elevacion_piernas rdf:type owl:NamedIndividual ,
+                            :Fuerza ;
+                   :ejercita :Piernas .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
+:Estiramiento_cuadriceps rdf:type owl:NamedIndividual ,
+                                  :Flexibilidad ;
+                         :ejercita :Piernas .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquitibiales
+:Estiramiento_isquitibiales rdf:type owl:NamedIndividual ,
+                                     :Flexibilidad ;
+                            :ejercita :Piernas .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
+:Estiramiento_muñeca rdf:type owl:NamedIndividual ,
+                              :Flexibilidad ;
+                     :ejercita :Mano_Muñeca .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
+:Estiramiento_tobillos rdf:type owl:NamedIndividual ,
+                                :Flexibilidad ;
+                       :ejercita :Pies_Tobillos .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
+:Estiramiento_triceps rdf:type owl:NamedIndividual ,
+                               :Flexibilidad ;
+                      :ejercita :Brazos .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estres
 :Estres rdf:type owl:NamedIndividual ,
                  :Psicologica .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
+:Extension_cadera rdf:type owl:NamedIndividual ,
+                           :Fuerza ;
+                  :ejercita :Cadera .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_rodilla
+:Extension_rodilla rdf:type owl:NamedIndividual ,
+                            :Fuerza ;
+                   :ejercita :Piernas .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_triceps
+:Extension_triceps rdf:type owl:NamedIndividual ,
+                            :Fuerza ;
+                   :ejercita :Brazos .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
+:Flexion_cadera rdf:type owl:NamedIndividual ,
+                         :Flexibilidad ;
+                :ejercita :Cadera .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
+:Flexion_hombros rdf:type owl:NamedIndividual ,
+                          :Fuerza ;
+                 :ejercita :Cuello_Hombros .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
+:Flexion_plantar rdf:type owl:NamedIndividual ,
+                          :Equilibrio ;
+                 :ejercita :Piernas ,
+                           :Pies_Tobillos .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
+:Flexion_tronco rdf:type owl:NamedIndividual ,
+                         :Flexibilidad ;
+                :ejercita :Cadera ,
+                          :Lumbar_Espalda .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertension
@@ -376,12 +342,34 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
                    :Persona .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
+:Levantar_brazos rdf:type owl:NamedIndividual ,
+                          :Fuerza ;
+                 :ejercita :Brazos .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
-:Lumbar_Espalda rdf:type owl:NamedIndividual .
+:Lumbar_Espalda rdf:type owl:NamedIndividual ,
+                         :Mobilidad ,
+                         :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mano_Muñeca
-:Mano_Muñeca rdf:type owl:NamedIndividual .
+:Mano_Muñeca rdf:type owl:NamedIndividual ,
+                      :Mobilidad ,
+                      :Partes_cuerpo .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natacion
+:Natacion rdf:type owl:NamedIndividual ,
+                   :Resistencia ;
+          :ejercita :Brazos ,
+                    :Cadera ,
+                    :Cuello_Hombros ,
+                    :Lumbar_Espalda ,
+                    :Mano_Muñeca ,
+                    :Piernas ,
+                    :Pies_Tobillos .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Obesidad
@@ -390,11 +378,34 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Piernas
-:Piernas rdf:type owl:NamedIndividual .
+:Piernas rdf:type owl:NamedIndividual ,
+                  :Mobilidad ,
+                  :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Pies_Tobillos
-:Pies_Tobillos rdf:type owl:NamedIndividual .
+:Pies_Tobillos rdf:type owl:NamedIndividual ,
+                        :Mobilidad ,
+                        :Partes_cuerpo .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Remo
+:Remo rdf:type owl:NamedIndividual ,
+               :Resistencia ;
+      :ejercita :Brazos ,
+                :Cadera ,
+                :Cuello_Hombros ,
+                :Lumbar_Espalda ,
+                :Mano_Muñeca .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Subir_escaleras
+:Subir_escaleras rdf:type owl:NamedIndividual ,
+                          :Resistencia ;
+                 :ejercita :Cadera ,
+                           :Lumbar_Espalda ,
+                           :Piernas ,
+                           :Pies_Tobillos .
 
 
 #################################################################
@@ -402,58 +413,10 @@ xsd:string owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Bailar
-                :Bicicleta
-                :Caminar
-                :Correr
-                :Natacion
-                :Remo
-                :Subir_escaleras
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Brazos
-                :Cadera
-                :Cuello
-                :Espalda
-                :Manos
-                :Piernas
-                :Pies
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Ejercicio_biceps
-                :Elevacion_piernas
-                :Extension_cadera
-                :Extension_rodilla
-                :Extension_triceps
-                :Flexion_hombros
-                :Levantar_brazos
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Equilibrio
                 :Flexibilidad
                 :Fuerza
                 :Resistencia
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Estiramiento_cuadriceps
-                :Estiramiento_isquiotibiales
-                :Estiramiento_muñeca
-                :Estiramiento_tobillos
-                :Estiramiento_triceps
-                :Flexion_cadera
-                :Flexion_tronco
               )
 ] .
 
