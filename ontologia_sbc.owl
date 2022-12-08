@@ -24,6 +24,10 @@
                        rdfs:range :Enfermedad .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#impide_hacer
+:impide_hacer rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#sufre
 :sufre rdf:type owl:ObjectProperty ,
                 owl:FunctionalProperty ;
@@ -187,13 +191,30 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
 :Brazos rdf:type owl:NamedIndividual ,
                  :Mobilidad ,
-                 :Partes_cuerpo .
+                 :Partes_cuerpo ;
+        :impide_hacer :Bailar ,
+                      :Correr ,
+                      :Ejercicio_biceps ,
+                      :Estiramiento_triceps ,
+                      :Extension_triceps ,
+                      :Levantar_brazos ,
+                      :Natacion ,
+                      :Remo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cadera
 :Cadera rdf:type owl:NamedIndividual ,
                  :Mobilidad ,
-                 :Partes_cuerpo .
+                 :Partes_cuerpo ;
+        :impide_hacer :Bailar ,
+                      :Bicicleta ,
+                      :Caminar ,
+                      :Correr ,
+                      :Flexion_cadera ,
+                      :Flexion_tronco ,
+                      :Natacion ,
+                      :Remo ,
+                      :Subir_escaleras .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
@@ -228,7 +249,11 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello_Hombros
 :Cuello_Hombros rdf:type owl:NamedIndividual ,
                          :Mobilidad ,
-                         :Partes_cuerpo .
+                         :Partes_cuerpo ;
+                :impide_hacer :Bailar ,
+                              :Flexion_hombros ,
+                              :Natacion ,
+                              :Remo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Depresion
@@ -351,13 +376,25 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
 :Lumbar_Espalda rdf:type owl:NamedIndividual ,
                          :Mobilidad ,
-                         :Partes_cuerpo .
+                         :Partes_cuerpo ;
+                :impide_hacer :Bailar ,
+                              :Bicicleta ,
+                              :Caminar ,
+                              :Correr ,
+                              :Flexion_tronco ,
+                              :Natacion ,
+                              :Remo ,
+                              :Subir_escaleras .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mano_Muñeca
 :Mano_Muñeca rdf:type owl:NamedIndividual ,
                       :Mobilidad ,
-                      :Partes_cuerpo .
+                      :Partes_cuerpo ;
+             :impide_hacer :Bailar ,
+                           :Estiramiento_muñeca ,
+                           :Natacion ,
+                           :Remo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natacion
@@ -380,13 +417,30 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Piernas
 :Piernas rdf:type owl:NamedIndividual ,
                   :Mobilidad ,
-                  :Partes_cuerpo .
+                  :Partes_cuerpo ;
+         :impide_hacer :Bailar ,
+                       :Bicicleta ,
+                       :Caminar ,
+                       :Correr ,
+                       :Elevacion_piernas ,
+                       :Estiramiento_isquitibiales ,
+                       :Flexion_plantar ,
+                       :Natacion ,
+                       :Subir_escaleras .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Pies_Tobillos
 :Pies_Tobillos rdf:type owl:NamedIndividual ,
                         :Mobilidad ,
-                        :Partes_cuerpo .
+                        :Partes_cuerpo ;
+               :impide_hacer :Bailar ,
+                             :Bicicleta ,
+                             :Caminar ,
+                             :Correr ,
+                             :Estiramiento_tobillos ,
+                             :Flexion_plantar ,
+                             :Natacion ,
+                             :Subir_escaleras .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Remo
