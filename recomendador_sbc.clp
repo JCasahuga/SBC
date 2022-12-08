@@ -59,7 +59,7 @@
   (printout t ?question)
 	(bind ?respuesta (read))
 	(while (< ?respuesta ?lowerbound) do
-		(format t "Porfavor, introduzca un valor mayor que %d: " ?lowerbound)
+		(format t "Porfavor, introduzca un valor mayor o igual que %d: " ?lowerbound)
 		(bind ?respuesta (read))
 	)
 	?respuesta
@@ -170,10 +170,10 @@
 	(bind ?ans (yes-or-no-p "Ha sido diagnosticado de alguna enfermedad psicologica? (si/no): "))
 	(if (eq ?ans TRUE) then
 		; TODO: no se com podem guardar per indicar-ho
-    (bind ?ans (yes-or-no-p "Sufer usted ansiedad? (si/no): "))
+    (bind ?ans (yes-or-no-p "Sufre usted ansiedad? (si/no): "))
     (bind ?ans (yes-or-no-p "Sufre usted depresión? (si/no): "))
     (bind ?ans (yes-or-no-p "Sufre usted estrés? (si/no): "))
-    (bind ?ans (yes-or-no-p "Sufer usted insomnio? (si/no): "))
+    (bind ?ans (yes-or-no-p "Sufre usted insomnio? (si/no): "))
 	)
 )
 
