@@ -15,6 +15,9 @@
 	(printout t "*                      Bienvenido al recomendador de ejercicios para personas mayores!                       *"crlf)
 	(printout t "**************************************************************************************************************"crlf)
 	(printout t crlf crlf)
+  (bind ?lista (create$ 32 ab abc))
+  (printout ?lista crlf)
+  (printout "clase " (class ?lista))
   (assert (nuevoUsuario))
 	(focus QUESTIONS)
 )
@@ -212,56 +215,62 @@
 	)
 )
 
-; (defrule imprimir "Imprime las enfermedades del jubilado"
-;   (nuevoUsuario)
-;   ?p <- (object(is-a Persona))
-;   =>
-;   (bind ?enfermedades (send ?p get-sufre))
-;   (loop-for-count (?i 1 (length$ $?enfermedades)) do
-;     (bind ?enfermedad (nth$ ?i $?enfermedades))
-;     (printout t "Pateix " ?enfermedad crlf)
-;   )
-; )
-
 (defrule posibles_ejercicios "Llista posibles exercicis"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
   (bind ?ejercicios (send ?p get-puede_realizar))
-  (loop-for-count (?i 1 (length$ $?ejercicios)) do
-    (bind ?ejercicio (nth$ ?i $?ejercicios))
-    ;(printout t "Exercici " ?ejercicio crlf)
-    (slot-insert$ [programa] contiene 1 ?ejercicio) ;; Insertem al programa tots els potencials exercicis i despres els eliminarem
-  )
+  ; (loop-for-count (?i 1 (length$ $?ejercicios)) do
+  ;   (bind ?ejercicio (nth$ ?i $?ejercicios))
+  ;   ;(printout t "Exercici " ?ejercicio crlf)
+  ;   (printout t " un possibilitat és " ?ejercicio crlf)
+  ;   (slot-insert$ [programa] contiene 1 ?ejercicio) ;; Insertem al programa tots els potencials exercicis i despres els eliminarem
+  ;   ;(printout t " un possibilitat és " ?ejercicio crlf)
+  ; )
 
   (bind ?enfermedades (send ?p get-sufre))
-	(loop-for-count (?i 1 (length$ ?enfermedades)) do
-		(bind ?enfermedad (nth$ ?i ?enfermedades))
-   ;(printout t "Malatia " (class ?enfermedad) " - " ?enfermedad crlf)
+	(loop-for-count (?i 1 (length$ $?enfermedades)) do
+		(bind ?enfermedad (nth$ ?i $?enfermedades))
 
 		(if (or (eq (class ?enfermedad) Mobilidad) (eq (class ?enfermedad) Partes_cuerpo)) then 
-       then
-        (printout t "No pot moure -> " ?enfermedad crlf)
-			; (bind ?zona (send ?enfermedad get-Zona_dolor))
-			; (bind ?ejercicios (find-all-instances ((?inst Ejercicio)) (not (eq (member ?zona ?inst:Ejercita) FALSE))))
-			; (loop-for-count (?j 1 (length$ ?ejercicios)) do
-			; 	(bind ?aux2 (nth$ ?j ?ejercicios))
-			; 	(elimina-apariciones ?aux2)
-			; 	(send ?aux2 delete)
-			; 	)
+        ;(printout t "No pot moure -> " ?enfermedad crlf)
+
+        (bind ?ejercicios_prohibidos (send ?enfermedad get-impide_hacer))
+        (loop-for-count (?j 1 (length$ ?ejercicios_prohibidos)) do
+          (bind ?ejercio_borrar (nth$ ?j ?ejercicios_prohibidos))
+
+          (printout t "eliminatn... " ?ejercio_borrar crlf)
+
+          (delete-member$ ?ejercicios ?ejercio_borrar)
+          ; (loop-for-count (?k 1 (length$ ?ejercicios)) do 
+          ;   (bind ?ejercicio_actual (nth$ ?k ?ejercicios))
+          ;   (if (eq ?ejercicio_actual ?ejercio_borrar) then 
+                          
+          ;     (bind ?delorted (nth$ ?k ?ejercicios))
+          ;     (printout t "NOOOOO 1: " ?k " is now delorted " ?delorted "¿?" ?ejercicio_actual crlf)
+          ;     ;(delete$ ?ejercicios 1 1)
+          ;     ;(slot-delete$ ?delorted ?ejercicios ?k ?k)
+          ;   )
+          ; )
+          ;(loop-for-count (?k 1 (length$ ?ejercicios)) do
+          ;
+          ;)
+
+	       ; (bind ?element_borrar (find-all-instances ((?inst Ejercicio)) (eq (class ?ejercicios) (class ?eje) TRUE) ))
+          ; (printout t "Per en joan: " (implode$ ?element_borrar) crlf)
+
+          ; (loop-for-count (?k 1 (length$ ?element_borrar)) do
+          ;   (printout t "NOOOOO 1: " ?k crlf)
+          ; )
+          ; ;(slot-delete$ [programa] ?ejercicios ?element_borrar ?element_borrar)
+          ; (printout t "NOOOOO 2: " ?ejercicios " --- ")
+          ; (printout t "NOOOOO 3: " ?element_borrar crlf)
+          ;(bind ?ejercicios (find-all-instances ((?inst Ejercicio)) (not (eq (member ?zona ?inst:Ejercita) FALSE))))
+          
+          ;(printout t "Que funcioni -----> " ?eje crlf)
+          ;(slot-delete$ [programa] ?ejercicios ?j ?j)
+        )
 		)
 	)
-
-  ;(bind ?ejercicios (send ?p get-))
-  ;(bind ?segons_plats (find-all-instances ((?plat Plat)) TRUE)
-  ;(bind ?sintoma [Fuerza])
-  ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
-  ;(bind ?sintoma (find-all-instances (Ejercicio) TRUE))
-
-  ;(do-for-all-instances ((?ins Ejercicio)) TRUE
-    ;(printout t ?ins)
-  ;)
-  ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
-    
-  ; )
+  (printout t ?ejercicios)
 )
