@@ -224,17 +224,20 @@
 )
 
 (defrule posibles_ejercicios "Llista posibles exercicis"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?ejercicios (send ?p get-puede_realizar))
+  (loop-for-count (?i 1 (length$ $?ejercicios)) do
+    (bind ?ejercicio (nth$ ?i $?ejercicios))
+    (printout t "Exercici " ?ejercicio crlf)
+  )
   ;(bind ?ejercicios (send ?p get-))
-  ;(bind ?sintoma (find-all-instances ((?inst Ejercicio)) ))
+  ;(bind ?segons_plats (find-all-instances ((?plat Plat)) TRUE)
+  ;(bind ?sintoma [Fuerza])
   ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
   ;(bind ?sintoma (find-all-instances (Ejercicio) TRUE))
-  
-  ; (do-for-all-instances
-  ;   ((?car1 Ejercicio))    ;Instance-set template
-  ;   TRUE            ;Instance-set query
-  ;   (printout t ?car1 crlf)
-  ; )
-  
+
   ;(do-for-all-instances ((?ins Ejercicio)) TRUE
     ;(printout t ?ins)
   ;)

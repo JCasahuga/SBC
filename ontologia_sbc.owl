@@ -26,6 +26,12 @@
               rdfs:range :Ejercicio .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#puede_realizar
+:puede_realizar rdf:type owl:ObjectProperty ;
+                rdfs:domain :Persona ;
+                rdfs:range :Ejercicio .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#sufre
 :sufre rdf:type owl:ObjectProperty ;
        rdfs:domain :Persona ;
@@ -399,7 +405,29 @@ owl:topDataProperty rdfs:domain :Persona ;
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Jubilado
 :Jubilado rdf:type owl:NamedIndividual ,
-                   :Persona .
+                   :Persona ;
+          :puede_realizar :Bailar ,
+                          :Bicicleta ,
+                          :Caminar ,
+                          :Correr ,
+                          :Ejercicio_biceps ,
+                          :Elevacion_piernas ,
+                          :Estiramiento_cuadriceps ,
+                          :Estiramiento_isquitibiales ,
+                          :Estiramiento_muñeca ,
+                          :Estiramiento_tobillos ,
+                          :Estiramiento_triceps ,
+                          :Extension_cadera ,
+                          :Extension_rodilla ,
+                          :Extension_triceps ,
+                          :Flexion_cadera ,
+                          :Flexion_hombros ,
+                          :Flexion_plantar ,
+                          :Flexion_tronco ,
+                          :Levantar_brazos ,
+                          :Natación ,
+                          :Remo ,
+                          :Subir_escaleras .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
