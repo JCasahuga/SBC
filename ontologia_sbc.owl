@@ -13,6 +13,12 @@
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#contiene
+:contiene rdf:type owl:ObjectProperty ;
+          rdfs:domain :Programa ;
+          rdfs:range :Ejercicio .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#ejercita
 :ejercita rdf:type owl:ObjectProperty ;
           rdfs:domain :Ejercicio ;
@@ -523,6 +529,11 @@ owl:topDataProperty rdfs:domain :Persona ;
                            :Lumbar_Espalda ,
                            :Piernas ,
                            :Pies_Tobillos .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#programa
+:programa rdf:type owl:NamedIndividual ,
+                   :Programa .
 
 
 #################################################################

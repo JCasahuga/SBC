@@ -212,16 +212,16 @@
 	)
 )
 
-(defrule imprimir "Imprime las enfermedades del jubilado"
-  (nuevoUsuario)
-  ?p <- (object(is-a Persona))
-  =>
-  (bind ?enfermedades (send ?p get-sufre))
-  (loop-for-count (?i 1 (length$ $?enfermedades)) do
-    (bind ?enfermedad (nth$ ?i $?enfermedades))
-    (printout t "Pateix " ?enfermedad crlf)
-  )
-)
+; (defrule imprimir "Imprime las enfermedades del jubilado"
+;   (nuevoUsuario)
+;   ?p <- (object(is-a Persona))
+;   =>
+;   (bind ?enfermedades (send ?p get-sufre))
+;   (loop-for-count (?i 1 (length$ $?enfermedades)) do
+;     (bind ?enfermedad (nth$ ?i $?enfermedades))
+;     (printout t "Pateix " ?enfermedad crlf)
+;   )
+; )
 
 (defrule posibles_ejercicios "Llista posibles exercicis"
   (nuevoUsuario)
@@ -230,8 +230,28 @@
   (bind ?ejercicios (send ?p get-puede_realizar))
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
     (bind ?ejercicio (nth$ ?i $?ejercicios))
-    (printout t "Exercici " ?ejercicio crlf)
+    ;(printout t "Exercici " ?ejercicio crlf)
+    (slot-insert$ [programa] contiene 1 ?ejercicio) ;; Insertem al programa tots els potencials exercicis i despres els eliminarem
   )
+
+  (bind ?enfermedades (send ?p get-sufre))
+	(loop-for-count (?i 1 (length$ ?enfermedades)) do
+		(bind ?enfermedad (nth$ ?i ?enfermedades))
+    (printout t "Malatia " (class ?enfermedad) " - " ?enfermedad crlf)
+
+		(if (or (eq (class ?enfermedad) Mobilidad) (eq (class ?enfermedad) Partes_cuerpo)) then 
+       then
+        (printout t "No pot moure -> " ?enfermedad crlf)
+			; (bind ?zona (send ?enfermedad get-Zona_dolor))
+			; (bind ?ejercicios (find-all-instances ((?inst Ejercicio)) (not (eq (member ?zona ?inst:Ejercita) FALSE))))
+			; (loop-for-count (?j 1 (length$ ?ejercicios)) do
+			; 	(bind ?aux2 (nth$ ?j ?ejercicios))
+			; 	(elimina-apariciones ?aux2)
+			; 	(send ?aux2 delete)
+			; 	)
+		)
+	)
+
   ;(bind ?ejercicios (send ?p get-))
   ;(bind ?segons_plats (find-all-instances ((?plat Plat)) TRUE)
   ;(bind ?sintoma [Fuerza])
