@@ -110,19 +110,14 @@
   (send ?p put-peso ?altura)
 )
 
-;Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
-;(defrule p_nivel_actividad "Pregunta el nivel de actividad"
-;  (nuevoUsuario)
-;  ?p <- (object(is-a Persona))
-;  =>
-;  (printout t "Cuan activo/a es usted? (0:Sedentario, 1:Un poco activo/a, 2:Muy activo/a)" crlf)
-;  (bind ?actividad (read))
-;  (while (not (and(>= ?actividad 0)(<= ?actividad 2))) do
-;    (printout t "Nivel de actividad no valido: Vuelva a introducirlo, por favor." crlf)
-;    (bind ?actividad (read))
-;  )
-;  (send ?p put-actividad ?actividad)
-;)
+Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
+(defrule p_nivel_actividad "Pregunta el nivel de actividad"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1:Nada activo, 5:My activo)" 1 5))
+  (send ?p put-actividad ?actividad)
+)
 
 (defrule p_corazon "Pregunta problemas del corazón"
 	(nuevoUsuario)
@@ -222,15 +217,16 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?var (send ?p get-sufre))
-  (loop-for-count (?i 1 (length$ $?var)) do
-    (bind ?malaltia (nth$ ?i $?var))
-    (printout t "Pateix " ?malaltia crlf)
+  (bind ?enfermedades (send ?p get-sufre))
+  (loop-for-count (?i 1 (length$ $?enfermedades)) do
+    (bind ?enfermedad (nth$ ?i $?enfermedades))
+    (printout t "Pateix " ?enfermedad crlf)
   )
-  (exit)
 )
 
 (defrule posibles_ejercicios "Llista posibles exercicis"
-  (loop-for-count (?i 1 (length$ $?var)) do
-  )
+  (bind ?ejercicios (send ?p get-))
+  ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
+    
+  ; )
 )
