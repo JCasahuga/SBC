@@ -216,6 +216,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
+  (bind ?nivel (send ?p get-nivel_fisico))
   (bind ?ejercicios (send ?p get-puede_realizar))
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
      (bind ?ejercicio (nth$ ?i $?ejercicios))
@@ -246,9 +247,43 @@
 
   (bind ?output (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
+  (printout t crlf "[ --------- Calentamiento --------- ]" crlf)
 	(loop-for-count (?i 1 (length$ $?output)) do
-    (bind ?actividad (nth$ ?i ?output))
-    (printout t ?actividad crlf)
+    (bind ?rand (random))
+    (if (> ?rand 1600000000) then
+      (bind ?act (nth$ ?i ?output))
+      (if (eq (class ?i) Resistencia) 
+        then  (printout t ?act " Minutos ")
+        else  (printout t ?act " Numero Repeticiones ")
+      )
+      (printout t (* (mod ?rand 5) 5) crlf)
+    )
+  )
+
+  (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
+	(loop-for-count (?i 1 (length$ $?output)) do
+    (bind ?rand (random))
+    (if (> ?rand 1600000000) then
+      (bind ?act (nth$ ?i ?output))
+      (if (eq (class ?i) Resistencia) 
+        then  (printout t ?act " Minutos ")
+        else  (printout t ?act " Numero Repeticiones ")
+      )
+      (printout t (* (mod ?rand 5) 5) crlf)
+    )
+  )
+
+  (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
+	(loop-for-count (?i 1 (length$ $?output)) do
+    (bind ?rand (random))
+    (if (> ?rand 1600000000) then
+      (bind ?act (nth$ ?i ?output))
+      (if (eq (class ?i) Resistencia) 
+        then  (printout t ?act " Minutos ")
+        else  (printout t ?act " Numero Repeticiones ")
+      )
+      (printout t (* (mod ?rand 5) 5) crlf)
+    )
   )
 
   ;(printout t (send [programa] get-contiene))
