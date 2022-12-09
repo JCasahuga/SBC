@@ -15,9 +15,6 @@
 	(printout t "*                      Bienvenido al recomendador de ejercicios para personas mayores!                       *"crlf)
 	(printout t "**************************************************************************************************************"crlf)
 	(printout t crlf crlf)
-  (bind ?lista (create$ 32 ab abc))
-  (printout ?lista crlf)
-  (printout "clase " (class ?lista))
   (assert (nuevoUsuario))
 	(focus QUESTIONS)
 )
@@ -242,33 +239,6 @@
           (printout t "eliminatn... " ?ejercio_borrar crlf)
 
           (delete-member$ ?ejercicios ?ejercio_borrar)
-          ; (loop-for-count (?k 1 (length$ ?ejercicios)) do 
-          ;   (bind ?ejercicio_actual (nth$ ?k ?ejercicios))
-          ;   (if (eq ?ejercicio_actual ?ejercio_borrar) then 
-                          
-          ;     (bind ?delorted (nth$ ?k ?ejercicios))
-          ;     (printout t "NOOOOO 1: " ?k " is now delorted " ?delorted "¿?" ?ejercicio_actual crlf)
-          ;     ;(delete$ ?ejercicios 1 1)
-          ;     ;(slot-delete$ ?delorted ?ejercicios ?k ?k)
-          ;   )
-          ; )
-          ;(loop-for-count (?k 1 (length$ ?ejercicios)) do
-          ;
-          ;)
-
-	       ; (bind ?element_borrar (find-all-instances ((?inst Ejercicio)) (eq (class ?ejercicios) (class ?eje) TRUE) ))
-          ; (printout t "Per en joan: " (implode$ ?element_borrar) crlf)
-
-          ; (loop-for-count (?k 1 (length$ ?element_borrar)) do
-          ;   (printout t "NOOOOO 1: " ?k crlf)
-          ; )
-          ; ;(slot-delete$ [programa] ?ejercicios ?element_borrar ?element_borrar)
-          ; (printout t "NOOOOO 2: " ?ejercicios " --- ")
-          ; (printout t "NOOOOO 3: " ?element_borrar crlf)
-          ;(bind ?ejercicios (find-all-instances ((?inst Ejercicio)) (not (eq (member ?zona ?inst:Ejercita) FALSE))))
-          
-          ;(printout t "Que funcioni -----> " ?eje crlf)
-          ;(slot-delete$ [programa] ?ejercicios ?j ?j)
         )
 		)
 	)
