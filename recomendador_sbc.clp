@@ -243,5 +243,13 @@
         )
 		)
 	)
-  (printout t (send [programa] get-contiene))
+
+  (bind ?output (send [programa] get-contiene))
+  (printout t "Recomendamos realizar: " crlf)
+	(loop-for-count (?i 1 (length$ $?output)) do
+    (bind ?actividad (nth$ ?i ?output))
+    (printout t ?actividad crlf)
+  )
+
+  ;(printout t (send [programa] get-contiene))
 )
