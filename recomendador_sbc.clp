@@ -237,7 +237,7 @@
   (bind ?enfermedades (send ?p get-sufre))
 	(loop-for-count (?i 1 (length$ ?enfermedades)) do
 		(bind ?enfermedad (nth$ ?i ?enfermedades))
-    (printout t "Malatia " (class ?enfermedad) " - " ?enfermedad crlf)
+   ;(printout t "Malatia " (class ?enfermedad) " - " ?enfermedad crlf)
 
 		(if (or (eq (class ?enfermedad) Mobilidad) (eq (class ?enfermedad) Partes_cuerpo)) then 
        then
