@@ -14,23 +14,27 @@
 #################################################################
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#ejercita
-:ejercita rdf:type owl:ObjectProperty .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#esta_recomendado_para
-:esta_recomendado_para rdf:type owl:ObjectProperty ,
-                                owl:FunctionalProperty ;
-                       rdfs:domain :Ejercicio ;
-                       rdfs:range :Enfermedad .
+:ejercita rdf:type owl:ObjectProperty ;
+          rdfs:domain :Ejercicio ;
+          rdfs:range :Partes_cuerpo .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#impide_hacer
-:impide_hacer rdf:type owl:ObjectProperty .
+:impide_hacer rdf:type owl:ObjectProperty ;
+              rdfs:domain :Mobilidad ,
+                          :Partes_cuerpo ;
+              rdfs:range :Ejercicio .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#puede_ser_mitigada_con
+:puede_ser_mitigada_con rdf:type owl:ObjectProperty ,
+                                 owl:FunctionalProperty ;
+                        rdfs:domain :Enfermedad ;
+                        rdfs:range :Ejercicio .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#sufre
-:sufre rdf:type owl:ObjectProperty ,
-                owl:FunctionalProperty ;
+:sufre rdf:type owl:ObjectProperty ;
        rdfs:domain :Persona ;
        rdfs:range :Enfermedad .
 
@@ -148,6 +152,10 @@
          rdfs:subClassOf owl:Thing .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Programa
+:Programa rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Psicologica
 :Psicologica rdf:type owl:Class ;
              rdfs:subClassOf :Enfermedad .
@@ -198,7 +206,7 @@
                       :Estiramiento_triceps ,
                       :Extension_triceps ,
                       :Levantar_brazos ,
-                      :Natacion ,
+                      :Natación ,
                       :Remo .
 
 
@@ -212,7 +220,7 @@
                       :Correr ,
                       :Flexion_cadera ,
                       :Flexion_tronco ,
-                      :Natacion ,
+                      :Natación ,
                       :Remo ,
                       :Subir_escaleras .
 
@@ -226,14 +234,10 @@
                    :Pies_Tobillos .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cancer
-:Cancer rdf:type owl:NamedIndividual ,
-                 :Otros .
-
-
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiopatía
 :Cardiopatía rdf:type owl:NamedIndividual ,
-                      :Cardiorespiratoria .
+                      :Cardiorespiratoria ;
+             :puede_ser_mitigada_con :Caminar .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
@@ -252,12 +256,17 @@
                          :Partes_cuerpo ;
                 :impide_hacer :Bailar ,
                               :Flexion_hombros ,
-                              :Natacion ,
+                              :Natación ,
                               :Remo .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Depresion
-:Depresion rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cáncer
+:Cáncer rdf:type owl:NamedIndividual ,
+                 :Otros .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Depresión
+:Depresión rdf:type owl:NamedIndividual ,
                     :Psicologica .
 
 
@@ -308,8 +317,8 @@
                       :ejercita :Brazos .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estres
-:Estres rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estrés
+:Estrés rdf:type owl:NamedIndividual ,
                  :Psicologica .
 
 
@@ -357,8 +366,8 @@
                           :Lumbar_Espalda .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertension
-:Hipertension rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertensión
+:Hipertensión rdf:type owl:NamedIndividual ,
                        :Cardiorespiratoria .
 
 
@@ -382,7 +391,7 @@
                               :Caminar ,
                               :Correr ,
                               :Flexion_tronco ,
-                              :Natacion ,
+                              :Natación ,
                               :Remo ,
                               :Subir_escaleras .
 
@@ -393,12 +402,12 @@
                       :Partes_cuerpo ;
              :impide_hacer :Bailar ,
                            :Estiramiento_muñeca ,
-                           :Natacion ,
+                           :Natación ,
                            :Remo .
 
 
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natacion
-:Natacion rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natación
+:Natación rdf:type owl:NamedIndividual ,
                    :Resistencia ;
           :ejercita :Brazos ,
                     :Cadera ,
@@ -425,7 +434,7 @@
                        :Elevacion_piernas ,
                        :Estiramiento_isquitibiales ,
                        :Flexion_plantar ,
-                       :Natacion ,
+                       :Natación ,
                        :Subir_escaleras .
 
 
@@ -439,7 +448,7 @@
                              :Correr ,
                              :Estiramiento_tobillos ,
                              :Flexion_plantar ,
-                             :Natacion ,
+                             :Natación ,
                              :Subir_escaleras .
 
 

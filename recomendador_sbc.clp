@@ -1,10 +1,4 @@
 
-(defrule create_initial_person_instance
-  (declare (salience 10))
-  =>
-  (make-instance p of Persona)
-)
-
 (defmodule MAIN
 	(export ?ALL)
 )
@@ -113,7 +107,7 @@
   ?p <- (object(is-a Persona))
   =>
   (bind ?altura (question-numeric-bigger "Introduzca su peso en kg: " 0))
-  (send ?p put-altura ?altura)
+  (send ?p put-peso ?altura)
 )
 
 ;Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
@@ -133,13 +127,13 @@
 (defrule p_corazon "Pregunta problemas del corazón"
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
-  ?cardiopatia <- (object(is-a Cardiorespiratoria))
+  ;?cardiopatia <- (object(is-a Cardiorespiratoria))
 	=>
 	(bind ?ans (yes-or-no-p "Ha padecido (o padece) problemas del corazón? (si/no): "))
 	(if (eq ?ans TRUE) then
-		(bind ?cardiopatia TRUE)
+		(slot-insert$ [Jubilado] sufre 1 [Cardiopatía])
     (bind ?ans (yes-or-no-p "Tiene usted hipertensión? (si/no): "))
-    ;(send ?p put-edad ?ans)
+    (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Hipertensión]))
 	)
 )
 
@@ -152,7 +146,27 @@
     (bind ?quedan-partes TRUE)
     (while (eq ?quedan-partes TRUE) do 
     	(bind ?parte (ask-question "En que parte del cuerpo sufre problemas? " Brazos brazos Brazo brazo Cadera cadera Cuello cuello Hombros hombros Hombro hombro Lumbar lumbar Espalda espalda Manos manos Mano mano Muñecas muñecas Muñeca muñeca Piernas piernas Pierna pierna Pies pies Pie pie Tobillos tobillos Tobillo tobillo)) ;Could be extended with Rodillas rodillas Rodilla rodilla Pecho pecho Dedos dedos Dedo dedo Pantorrilla pantorrilla Cintura cintura 
-      ; TODO: no se com podem guardar per indicar-ho en el filtratge
+      (if (or (eq (lowcase ?parte) brazo) (eq (lowcase ?parte) brazos)) then
+        (slot-insert$ [Jubilado] sufre 1 [Brazos])
+      )
+      (if (eq (lowcase ?parte) cadera) then 
+        (slot-insert$ [Jubilado] sufre 1 [Cadera])
+      )
+      (if (or (eq (lowcase ?parte) cuello) (eq (lowcase ?parte) hombro) (eq (lowcase ?parte) hombros)) then 
+        (slot-insert$ [Jubilado] sufre 1 [Cuello_Hombros])
+      )
+      (if (or (eq (lowcase ?parte) lumbar) (eq (lowcase ?parte) espalda)) then 
+        (slot-insert$ [Jubilado] sufre 1 [Lumbar_Espalda])
+      )
+      (if (or (eq (lowcase ?parte) mano) (eq (lowcase ?parte) manos) (eq (lowcase ?parte) muñeca) (eq (lowcase ?parte) muñecas)) then
+        (slot-insert$ [Jubilado] sufre 1 [Mano_Muñeca])
+      )
+      (if (or (eq (lowcase ?parte) pierna) (eq (lowcase ?parte) piernas)) then
+        (slot-insert$ [Jubilado] sufre 1 [Piernas])
+      )
+      (if (or (eq (lowcase ?parte) pies) (eq (lowcase ?parte) pie) (eq (lowcase ?parte) tobillo) (eq (lowcase ?parte) tobillos)) then
+        (slot-insert$ [Jubilado] sufre 1 [Pies_Tobillos])
+      )
       (bind ?quedan-partes (yes-or-no-p "Tienes más partes del cuerpo con problemas de mobilidad? (si/no): "))
     )
 	)
@@ -163,7 +177,7 @@
   ?p <- (object(is-a Persona))
   =>
   (bind ?ans (yes-or-no-p "Tiene usted diabetes? (si/no): "))
-  ;(send ?p put-edad ?ans)
+  (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Diabetes]))
 )
 
 
@@ -173,11 +187,14 @@
 	=>
 	(bind ?ans (yes-or-no-p "Ha sido diagnosticado de alguna enfermedad psicologica? (si/no): "))
 	(if (eq ?ans TRUE) then
-		; TODO: no se com podem guardar per indicar-ho
     (bind ?ans (yes-or-no-p "Sufre usted ansiedad? (si/no): "))
+    (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Ansiedad]))
     (bind ?ans (yes-or-no-p "Sufre usted depresión? (si/no): "))
+    (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Depresión]))
     (bind ?ans (yes-or-no-p "Sufre usted estrés? (si/no): "))
+    (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Estrés]))
     (bind ?ans (yes-or-no-p "Sufre usted insomnio? (si/no): "))
+    (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Insomnio]))
 	)
 )
 
@@ -186,14 +203,13 @@
   ?p <- (object(is-a Persona))
   =>
   (bind ?ans (yes-or-no-p "Sufre (o ha sufrido) usted cáncer? (si/no): "))
-  ;(send ?p put-edad ?ans)
+  (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Cáncer]))
 )
 
 (defrule p_disponibilidad "Pregunta por la disponibilidad"
 	(nuevoUsuario)
   ?p <- (object(is-a Persona))
 	=>
-  (?cardio)
 	(bind ?ans (ask-question "Cuantos días a la semana podria relizar el programa personalizado? " 0 1 2 3 4 5 6 7))
 	(if (< ?ans 3) then 
     (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento para menos de 3 días por semana." crlf)
@@ -202,8 +218,19 @@
 	)
 )
 
-(defmodule RESULT
-	(import MAIN ?ALL)
-	(import QUESTIONS ?ALL)
-  (export ?ALL)
+(defrule imprimir "Imprime las enfermedades del jubilado"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?var (send ?p get-sufre))
+  (loop-for-count (?i 1 (length$ $?var)) do
+    (bind ?malaltia (nth$ ?i $?var))
+    (printout t "Pateix " ?malaltia crlf)
+  )
+  (exit)
+)
+
+(defrule posibles_ejercicios "Llista posibles exercicis"
+  (loop-for-count (?i 1 (length$ $?var)) do
+  )
 )
