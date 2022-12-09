@@ -217,30 +217,31 @@
   ?p <- (object(is-a Persona))
   =>
   (bind ?ejercicios (send ?p get-puede_realizar))
-  ; (loop-for-count (?i 1 (length$ $?ejercicios)) do
-  ;   (bind ?ejercicio (nth$ ?i $?ejercicios))
-  ;   ;(printout t "Exercici " ?ejercicio crlf)
-  ;   (printout t " un possibilitat és " ?ejercicio crlf)
-  ;   (slot-insert$ [programa] contiene 1 ?ejercicio) ;; Insertem al programa tots els potencials exercicis i despres els eliminarem
-  ;   ;(printout t " un possibilitat és " ?ejercicio crlf)
-  ; )
+  (loop-for-count (?i 1 (length$ $?ejercicios)) do
+     (bind ?ejercicio (nth$ ?i $?ejercicios))
+     (slot-insert$ [programa] contiene 1 ?ejercicio)
+  )
 
   (bind ?enfermedades (send ?p get-sufre))
 	(loop-for-count (?i 1 (length$ $?enfermedades)) do
 		(bind ?enfermedad (nth$ ?i $?enfermedades))
 
 		(if (or (eq (class ?enfermedad) Mobilidad) (eq (class ?enfermedad) Partes_cuerpo)) then 
-        ;(printout t "No pot moure -> " ?enfermedad crlf)
-
         (bind ?ejercicios_prohibidos (send ?enfermedad get-impide_hacer))
         (loop-for-count (?j 1 (length$ ?ejercicios_prohibidos)) do
+          
           (bind ?ejercio_borrar (nth$ ?j ?ejercicios_prohibidos))
 
-          (printout t "eliminatn... " ?ejercio_borrar crlf)
-
-          (delete-member$ ?ejercicios ?ejercio_borrar)
+          (bind ?var (send [programa] get-contiene))
+          (loop-for-count (?k 1 (length$ ?var)) do 
+            (bind ?ejercicio_actual (nth$ ?k ?var))
+            (if (eq ?ejercicio_actual ?ejercio_borrar) then
+              (bind ?delorted (nth$ ?k ?var))
+              (slot-delete$ [programa] contiene ?k ?k)
+            )
+          )
         )
 		)
 	)
-  (printout t ?ejercicios)
+  (printout t (send [programa] get-contiene))
 )
