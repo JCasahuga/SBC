@@ -225,7 +225,11 @@ Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
 )
 
 (defrule posibles_ejercicios "Llista posibles exercicis"
-  (bind ?ejercicios (send ?p get-))
+  ;(bind ?ejercicios (send ?p get-))
+  (bind ?instances (find-all-instances ((?i Ejercicio)) TRUE))
+  (progn$ (?i ?instances)
+    (printout t ?i crlf)
+  )
   ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
     
   ; )
