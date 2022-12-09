@@ -45,8 +45,8 @@
 
 ; Asks a question which has to be answered with either yes or no.
 (deffunction yes-or-no-p (?question)
-   (bind ?response (ask-question ?question si no s n Si No))
-   (if (or (eq ?response si) (eq ?response s) (eq ?response Si))
+   (bind ?response (ask-question ?question si no s n Si No y Yes Y S s))
+   (if (or (eq ?response si) (eq ?response s) (eq ?response Si) (eq ?response Yes) (eq ?response Y) (eq ?response y))
        then TRUE
        else FALSE)
 )
@@ -114,7 +114,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1:Nada activo, 5:My activo)" 1 5))
+  (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1: Nada activo, 5: Muy activo)" 1 5))
   (send ?p put-nivel_fisico ?actividad)
 )
 
@@ -223,22 +223,22 @@
   )
 )
 
-; (defrule posibles_ejercicios "Llista posibles exercicis"
-;   ;(bind ?ejercicios (send ?p get-))
-;   ;(bind ?sintoma (find-all-instances ((?inst Ejercicio)) ))
-;   ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
-;   ;(bind ?sintoma (find-all-instances (Ejercicio) TRUE))
+(defrule posibles_ejercicios "Llista posibles exercicis"
+  ;(bind ?ejercicios (send ?p get-))
+  ;(bind ?sintoma (find-all-instances ((?inst Ejercicio)) ))
+  ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
+  ;(bind ?sintoma (find-all-instances (Ejercicio) TRUE))
   
-;   ; (do-for-all-instances
-;   ;   ((?car1 Ejercicio))    ;Instance-set template
-;   ;   TRUE            ;Instance-set query
-;   ;   (printout t ?car1 crlf)
-;   ; )
+  ; (do-for-all-instances
+  ;   ((?car1 Ejercicio))    ;Instance-set template
+  ;   TRUE            ;Instance-set query
+  ;   (printout t ?car1 crlf)
+  ; )
   
-;   ;(do-for-all-instances ((?ins Ejercicio)) TRUE
-;     ;(printout t ?ins)
-;   ;)
-;   ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
+  ;(do-for-all-instances ((?ins Ejercicio)) TRUE
+    ;(printout t ?ins)
+  ;)
+  ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
     
-;   ; )
-; )
+  ; )
+)
