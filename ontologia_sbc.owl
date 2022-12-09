@@ -21,16 +21,9 @@
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#impide_hacer
 :impide_hacer rdf:type owl:ObjectProperty ;
-              rdfs:domain :Mobilidad ,
+              rdfs:domain :Enfermedad ,
                           :Partes_cuerpo ;
               rdfs:range :Ejercicio .
-
-
-###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#puede_ser_mitigada_con
-:puede_ser_mitigada_con rdf:type owl:ObjectProperty ,
-                                 owl:FunctionalProperty ;
-                        rdfs:domain :Enfermedad ;
-                        rdfs:range :Ejercicio .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#sufre
@@ -82,6 +75,13 @@
       rdfs:range xsd:integer .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#nivel_fisico
+:nivel_fisico rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Persona ;
+              rdfs:range xsd:int .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#nombre
 :nombre rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf owl:topDataProperty ;
@@ -97,6 +97,28 @@
       rdfs:subPropertyOf owl:topDataProperty ;
       rdfs:domain :Persona ;
       rdfs:range xsd:double .
+
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdfs:domain :Persona ;
+                    rdfs:range [ rdf:type rdfs:Datatype ;
+                                 owl:oneOf [ rdf:type rdf:List ;
+                                             rdf:first "1" ;
+                                             rdf:rest [ rdf:type rdf:List ;
+                                                        rdf:first "2" ;
+                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                   rdf:first "3" ;
+                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                              rdf:first "4" ;
+                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                         rdf:first "5" ;
+                                                                                         rdf:rest rdf:nil
+                                                                                       ]
+                                                                            ]
+                                                                 ]
+                                                      ]
+                                           ]
+                               ] .
 
 
 #################################################################
@@ -236,8 +258,7 @@
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiopatía
 :Cardiopatía rdf:type owl:NamedIndividual ,
-                      :Cardiorespiratoria ;
-             :puede_ser_mitigada_con :Caminar .
+                      :Cardiorespiratoria .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Correr
