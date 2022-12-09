@@ -79,7 +79,7 @@
 :nivel_fisico rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf owl:topDataProperty ;
               rdfs:domain :Persona ;
-              rdfs:range xsd:int .
+              rdfs:range xsd:integer .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#nombre

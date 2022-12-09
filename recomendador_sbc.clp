@@ -110,13 +110,12 @@
   (send ?p put-peso ?altura)
 )
 
-Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
 (defrule p_nivel_actividad "Pregunta el nivel de actividad"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
   (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1:Nada activo, 5:My activo)" 1 5))
-  (send ?p put-actividad ?actividad)
+  (send ?p put-nivel_fisico ?actividad)
 )
 
 (defrule p_corazon "Pregunta problemas del corazón"
@@ -224,22 +223,22 @@ Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
   )
 )
 
-(defrule posibles_ejercicios "Llista posibles exercicis"
-  ;(bind ?ejercicios (send ?p get-))
-  ;(bind ?sintoma (find-all-instances ((?inst Ejercicio)) ))
-  ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
-  (bind ?sintoma (find-all-instances (Ejercicio) TRUE))
+; (defrule posibles_ejercicios "Llista posibles exercicis"
+;   ;(bind ?ejercicios (send ?p get-))
+;   ;(bind ?sintoma (find-all-instances ((?inst Ejercicio)) ))
+;   ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
+;   ;(bind ?sintoma (find-all-instances (Ejercicio) TRUE))
   
-  ; (do-for-all-instances
-  ;   ((?car1 Ejercicio))    ;Instance-set template
-  ;   TRUE            ;Instance-set query
-  ;   (printout t ?car1 crlf)
-  ; )
+;   ; (do-for-all-instances
+;   ;   ((?car1 Ejercicio))    ;Instance-set template
+;   ;   TRUE            ;Instance-set query
+;   ;   (printout t ?car1 crlf)
+;   ; )
   
-  ;(do-for-all-instances ((?ins Ejercicio)) TRUE
-    ;(printout t ?ins)
-  ;)
-  ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
+;   ;(do-for-all-instances ((?ins Ejercicio)) TRUE
+;     ;(printout t ?ins)
+;   ;)
+;   ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
     
-  ; )
-)
+;   ; )
+; )
