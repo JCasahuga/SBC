@@ -226,10 +226,19 @@ Nivel de actividad no definido en la ontología (al menos yo no lo he visto xd)
 
 (defrule posibles_ejercicios "Llista posibles exercicis"
   ;(bind ?ejercicios (send ?p get-))
-  (bind ?instances (find-all-instances ((?i Ejercicio)) TRUE))
-  (progn$ (?i ?instances)
-    (printout t ?i crlf)
-  )
+  ;(bind ?sintoma (find-all-instances ((?inst Ejercicio)) ))
+  ;(bind ?sintoma (find-all-instances ((?inst Sintoma)) (not (eq (member ?aux2 ?inst:Mejora_con) FALSE))))
+  (bind ?sintoma (find-all-instances (Ejercicio) TRUE))
+  
+  ; (do-for-all-instances
+  ;   ((?car1 Ejercicio))    ;Instance-set template
+  ;   TRUE            ;Instance-set query
+  ;   (printout t ?car1 crlf)
+  ; )
+  
+  ;(do-for-all-instances ((?ins Ejercicio)) TRUE
+    ;(printout t ?ins)
+  ;)
   ; (loop-for-count (?i 1 (length$ $?enfermedades)) do
     
   ; )
