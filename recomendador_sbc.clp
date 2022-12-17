@@ -31,12 +31,12 @@
 
 ; Asks a question which has to be answered with one of the allowed values.
 (deffunction ask-question (?question $?allowed_values)
-   (printout t ?question)
+   (printout t crlf ?question crlf)
    (bind ?answer (read))
    (if (lexemep ?answer)
        then (bind ?answer (lowcase ?answer)))
    (while (not (member ?answer ?allowed_values)) do
-      (printout t ?question)
+      (printout t "Lo sentimos pero no le hemos ententido, vuelva a escribir la respuesta." crlf)
       (bind ?answer (read))
       (if (lexemep ?answer)
           then (bind ?answer (lowcase ?answer))))
@@ -53,10 +53,11 @@
 
 ; Asks a question which has to be answered with a numberic value wchich must be >= than the given one.
 (deffunction question-numeric-bigger (?question ?lowerbound)
-  (printout t ?question)
+  (printout t crlf ?question crlf)
 	(bind ?respuesta (read))
 	(while (< ?respuesta ?lowerbound) do
-		(format t "Porfavor, introduzca un valor mayor o igual que %d: " ?lowerbound)
+    (format t "Porfavor, introduzca un valor mayor o igual que %d." ?lowerbound)
+    (printout t crlf)
 		(bind ?respuesta (read))
 	)
 	?respuesta
@@ -64,10 +65,13 @@
 
 ; Asks a question which has to be answered with a numberic value within the given range.
 (deffunction question-numeric-range (?question ?rangini ?rangfi)
-	(format t "%s [%d, %d]: " ?question ?rangini ?rangfi)
+  (printout t crlf)
+	(format t "%s [%d, %d]" ?question ?rangini ?rangfi)
+  (printout t crlf)
 	(bind ?respuesta (read))
 	(while (not(and(>= ?respuesta ?rangini)(<= ?respuesta ?rangfi))) do
-		(format t "Porfavor, introduzca un valor entre %d i %d: " ?rangini ?rangfi)
+		(format t "Porfavor, introduzca un valor entre %d i %d." ?rangini ?rangfi)
+    (printout t crlf)
 		(bind ?respuesta (read))
 	)
 	?respuesta
@@ -90,7 +94,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?edad (question-numeric-bigger "Que edad tiene usted? (este programa solo hace recomendaciones para mayores de 65 años): " 65))
+  (bind ?edad (question-numeric-bigger "Que edad tiene usted? (Este programa solo hace recomendaciones para mayores de 65 años)" 65))
   (send ?p put-edad ?edad)
 )
 
@@ -98,7 +102,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?altura (question-numeric-bigger "Introduzca su altura en centímetros: " 0))
+  (bind ?altura (question-numeric-bigger "Introduzca su altura en centímetros." 0))
   (send ?p put-altura ?altura)
 )
 
@@ -106,7 +110,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?altura (question-numeric-bigger "Introduzca su peso en kg: " 0))
+  (bind ?altura (question-numeric-bigger "Introduzca su peso en kg." 0))
   (send ?p put-peso ?altura)
 )
 
@@ -114,7 +118,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1: Nada activo, 5: Muy activo)" 1 5))
+  (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1: Nada activo, 5: Muy activo)." 1 5))
   (send ?p put-nivel_fisico ?actividad)
 )
 
@@ -123,7 +127,7 @@
 	?p <- (object(is-a Persona))
   ;?cardiopatia <- (object(is-a Cardiorespiratoria))
 	=>
-	(bind ?ans (yes-or-no-p "Ha padecido (o padece) problemas del corazón? (si/no): "))
+	(bind ?ans (yes-or-no-p "Ha padecido (o padece) problemas del corazón? (si/no)."))
 	(if (eq ?ans TRUE) then
 		(slot-insert$ [Jubilado] sufre 1 [Cardiopatía])
     (bind ?ans (yes-or-no-p "Tiene usted hipertensión? (si/no): "))
@@ -135,7 +139,7 @@
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
 	=>
-	(bind ?ans (yes-or-no-p "Sufre algun problema de mobilidad? (si/no): "))
+	(bind ?ans (yes-or-no-p "Sufre algun problema de mobilidad? (si/no)."))
 	(if (eq ?ans TRUE) then
     (bind ?quedan-partes TRUE)
     (while (eq ?quedan-partes TRUE) do 
@@ -161,7 +165,7 @@
       (if (or (eq (lowcase ?parte) pies) (eq (lowcase ?parte) pie) (eq (lowcase ?parte) tobillo) (eq (lowcase ?parte) tobillos)) then
         (slot-insert$ [Jubilado] sufre 1 [Pies_Tobillos])
       )
-      (bind ?quedan-partes (yes-or-no-p "Tienes más partes del cuerpo con problemas de mobilidad? (si/no): "))
+      (bind ?quedan-partes (yes-or-no-p "Tienes más partes del cuerpo con problemas de mobilidad? (si/no)"))
     )
 	)
 )
@@ -170,7 +174,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?ans (yes-or-no-p "Tiene usted diabetes? (si/no): "))
+  (bind ?ans (yes-or-no-p "Tiene usted diabetes? (si/no)"))
   (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Diabetes]))
 )
 
@@ -179,15 +183,15 @@
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
 	=>
-	(bind ?ans (yes-or-no-p "Ha sido diagnosticado de alguna enfermedad psicologica? (si/no): "))
+	(bind ?ans (yes-or-no-p "Ha sido diagnosticado de alguna enfermedad psicologica? (si/no)"))
 	(if (eq ?ans TRUE) then
-    (bind ?ans (yes-or-no-p "Sufre usted ansiedad? (si/no): "))
+    (bind ?ans (yes-or-no-p "Sufre usted ansiedad? (si/no)"))
     (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Ansiedad]))
-    (bind ?ans (yes-or-no-p "Sufre usted depresión? (si/no): "))
+    (bind ?ans (yes-or-no-p "Sufre usted depresión? (si/no)"))
     (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Depresión]))
-    (bind ?ans (yes-or-no-p "Sufre usted estrés? (si/no): "))
+    (bind ?ans (yes-or-no-p "Sufre usted estrés? (si/no)"))
     (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Estrés]))
-    (bind ?ans (yes-or-no-p "Sufre usted insomnio? (si/no): "))
+    (bind ?ans (yes-or-no-p "Sufre usted insomnio? (si/no)"))
     (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Insomnio]))
 	)
 )
@@ -196,7 +200,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?ans (yes-or-no-p "Sufre (o ha sufrido) usted cáncer? (si/no): "))
+  (bind ?ans (yes-or-no-p "Sufre (o ha sufrido) usted cáncer? (si/no)"))
   (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Cáncer]))
 )
 
