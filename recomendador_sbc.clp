@@ -245,14 +245,14 @@
 		)
 	)
 
-  (bind ?output (send [programa] get-contiene))
+  (bind ?seleccionado (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
   (printout t crlf "[ --------- Calentamiento --------- ]" crlf)
-	(loop-for-count (?i 1 (length$ $?output)) do
+	(loop-for-count (?i 1 (length$ $?seleccionado)) do
     (bind ?rand (random))
     (if (> ?rand 1600000000) then
-      (bind ?act (nth$ ?i ?output))
-      (if (eq (class ?i) Resistencia) 
+      (bind ?act (nth$ ?i ?seleccionado))
+      (if (eq (class ?i) Ejercicio.Resistencia) 
         then  (printout t ?act " Minutos ")
         else  (printout t ?act " Numero Repeticiones ")
       )
@@ -261,11 +261,11 @@
   )
 
   (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
-	(loop-for-count (?i 1 (length$ $?output)) do
+	(loop-for-count (?i 1 (length$ $?seleccionado)) do
     (bind ?rand (random))
     (if (> ?rand 1600000000) then
-      (bind ?act (nth$ ?i ?output))
-      (if (eq (class ?i) Resistencia) 
+      (bind ?act (nth$ ?i ?seleccionado))
+      (if (eq (class ?i) Ejercicio.Resistencia) 
         then  (printout t ?act " Minutos ")
         else  (printout t ?act " Numero Repeticiones ")
       )
@@ -274,11 +274,11 @@
   )
 
   (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
-	(loop-for-count (?i 1 (length$ $?output)) do
+	(loop-for-count (?i 1 (length$ $?seleccionado)) do
     (bind ?rand (random))
     (if (> ?rand 1600000000) then
-      (bind ?act (nth$ ?i ?output))
-      (if (eq (class ?i) Resistencia) 
+      (bind ?act (nth$ ?i ?seleccionado))
+      (if (eq (class ?i) Ejercicio.Resistencia) 
         then  (printout t ?act " Minutos ")
         else  (printout t ?act " Numero Repeticiones ")
       )

@@ -87,6 +87,13 @@
       rdfs:range xsd:integer .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#intensidad
+:intensidad rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Ejercicio ;
+            rdfs:range xsd:integer .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#nivel_fisico
 :nivel_fisico rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf owl:topDataProperty ;
@@ -218,7 +225,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                   :Lumbar_Espalda ,
                   :Mano_Muñeca ,
                   :Piernas ,
-                  :Pies_Tobillos .
+                  :Pies_Tobillos ;
+        :intensidad 3 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Bicicleta
@@ -227,7 +235,8 @@ owl:topDataProperty rdfs:domain :Persona ;
            :ejercita :Cadera ,
                      :Lumbar_Espalda ,
                      :Piernas ,
-                     :Pies_Tobillos .
+                     :Pies_Tobillos ;
+           :intensidad 5 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Brazos
@@ -265,7 +274,8 @@ owl:topDataProperty rdfs:domain :Persona ;
          :ejercita :Cadera ,
                    :Lumbar_Espalda ,
                    :Piernas ,
-                   :Pies_Tobillos .
+                   :Pies_Tobillos ;
+         :intensidad 3 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiopatía
@@ -280,7 +290,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                   :Cadera ,
                   :Lumbar_Espalda ,
                   :Piernas ,
-                  :Pies_Tobillos .
+                  :Pies_Tobillos ;
+        :intensidad 5 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello_Hombros
@@ -311,43 +322,50 @@ owl:topDataProperty rdfs:domain :Persona ;
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Ejercicio_biceps
 :Ejercicio_biceps rdf:type owl:NamedIndividual ,
                            :Fuerza ;
-                  :ejercita :Brazos .
+                  :ejercita :Brazos ;
+                  :intensidad 3 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
 :Elevacion_piernas rdf:type owl:NamedIndividual ,
                             :Fuerza ;
-                   :ejercita :Piernas .
+                   :ejercita :Piernas ;
+                   :intensidad 3 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
 :Estiramiento_cuadriceps rdf:type owl:NamedIndividual ,
                                   :Flexibilidad ;
-                         :ejercita :Piernas .
+                         :ejercita :Piernas ;
+                         :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquitibiales
 :Estiramiento_isquitibiales rdf:type owl:NamedIndividual ,
                                      :Flexibilidad ;
-                            :ejercita :Piernas .
+                            :ejercita :Piernas ;
+                            :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
 :Estiramiento_muñeca rdf:type owl:NamedIndividual ,
                               :Flexibilidad ;
-                     :ejercita :Mano_Muñeca .
+                     :ejercita :Mano_Muñeca ;
+                     :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
 :Estiramiento_tobillos rdf:type owl:NamedIndividual ,
                                 :Flexibilidad ;
-                       :ejercita :Pies_Tobillos .
+                       :ejercita :Pies_Tobillos ;
+                       :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
 :Estiramiento_triceps rdf:type owl:NamedIndividual ,
                                :Flexibilidad ;
-                      :ejercita :Brazos .
+                      :ejercita :Brazos ;
+                      :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estrés
@@ -358,45 +376,52 @@ owl:topDataProperty rdfs:domain :Persona ;
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
 :Extension_cadera rdf:type owl:NamedIndividual ,
                            :Fuerza ;
-                  :ejercita :Cadera .
+                  :ejercita :Cadera ;
+                  :intensidad 2 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_rodilla
 :Extension_rodilla rdf:type owl:NamedIndividual ,
                             :Fuerza ;
-                   :ejercita :Piernas .
+                   :ejercita :Piernas ;
+                   :intensidad 2 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_triceps
 :Extension_triceps rdf:type owl:NamedIndividual ,
                             :Fuerza ;
-                   :ejercita :Brazos .
+                   :ejercita :Brazos ;
+                   :intensidad 2 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
 :Flexion_cadera rdf:type owl:NamedIndividual ,
                          :Flexibilidad ;
-                :ejercita :Cadera .
+                :ejercita :Cadera ;
+                :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
 :Flexion_hombros rdf:type owl:NamedIndividual ,
                           :Fuerza ;
-                 :ejercita :Cuello_Hombros .
+                 :ejercita :Cuello_Hombros ;
+                 :intensidad 2 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
 :Flexion_plantar rdf:type owl:NamedIndividual ,
                           :Equilibrio ;
                  :ejercita :Piernas ,
-                           :Pies_Tobillos .
+                           :Pies_Tobillos ;
+                 :intensidad 2 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
 :Flexion_tronco rdf:type owl:NamedIndividual ,
                          :Flexibilidad ;
                 :ejercita :Cadera ,
-                          :Lumbar_Espalda .
+                          :Lumbar_Espalda ;
+                :intensidad 1 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertensión
@@ -439,7 +464,8 @@ owl:topDataProperty rdfs:domain :Persona ;
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
 :Levantar_brazos rdf:type owl:NamedIndividual ,
                           :Fuerza ;
-                 :ejercita :Brazos .
+                 :ejercita :Brazos ;
+                 :intensidad 2 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
@@ -475,7 +501,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                     :Lumbar_Espalda ,
                     :Mano_Muñeca ,
                     :Piernas ,
-                    :Pies_Tobillos .
+                    :Pies_Tobillos ;
+          :intensidad 4 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Obesidad
@@ -519,7 +546,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                 :Cadera ,
                 :Cuello_Hombros ,
                 :Lumbar_Espalda ,
-                :Mano_Muñeca .
+                :Mano_Muñeca ;
+      :intensidad 5 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Subir_escaleras
@@ -528,7 +556,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                  :ejercita :Cadera ,
                            :Lumbar_Espalda ,
                            :Piernas ,
-                           :Pies_Tobillos .
+                           :Pies_Tobillos ;
+                 :intensidad 4 .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#programa
