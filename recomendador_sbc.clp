@@ -240,10 +240,27 @@
               (bind ?delorted (nth$ ?k ?var))
               (slot-delete$ [programa] contiene ?k ?k)
             )
+
+
+            (if (eq ?ejercicio_actual ?ejercio_borrar) then
+              (bind ?delorted (nth$ ?k ?var))
+              (slot-delete$ [programa] contiene ?k ?k)
+            )
           )
         )
 		)
 	)
+
+  (loop-for-count (?i 1 (length$ $?ejercicios)) do
+    (bind ?eje (nth$ ?i ?ejercicios))
+    (bind ?nivel_ejercicio (send ?eje get-intensidad))
+    (printout t ?eje crlf)
+    (printout t ?nivel_ejercicio crlf)
+    (printout t ?nivel crlf)
+    (if (< ?nivel ?nivel_ejercicio) then
+      (printout t "Funciona " crlf)
+    )
+  )
 
   (bind ?seleccionado (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
