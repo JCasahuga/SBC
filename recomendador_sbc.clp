@@ -122,6 +122,14 @@
   (send ?p put-nivel_fisico ?actividad)
 )
 
+(defrule p_borg "Pregunta escala de borg"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?actividad (question-numeric-range "Después de caminar durante 15 minutos, indique del 1 al 10 como de agato (1: Como si nada, 10: Ya no puedo más)" 1 10))
+  (assert(iborg ?ans))
+)
+
 (defrule p_corazon "Pregunta problemas del corazón"
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
@@ -244,7 +252,6 @@
               (bind ?delorted (nth$ ?k ?var))
               (slot-delete$ [programa] contiene ?k ?k)
             )
-
 
             (if (eq ?ejercicio_actual ?ejercio_borrar) then
               (bind ?delorted (nth$ ?k ?var))
