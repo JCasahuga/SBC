@@ -222,6 +222,7 @@
     (printout t "Le recomendamos que vuelva a consultar un plan personalizado cuando disponga de ellos, grácias." crlf)
     (halt)
 	)
+  (send ?p put-dias_disponibles ?ans)
   (focus FILTRO_ENFERMEDADES)
 )
 
@@ -292,7 +293,7 @@
 	(export ?ALL)
 )
 
-(deffunction calcula-reps-mins (?p ?act)
+(deffunction calcula-reps-mins (?p ?act ?mult)
   (bind ?nivel (send ?p get-nivel_fisico))
   (bind ?intensidad (send ?act get-intensidad))
   (bind ?nivelBorg (send ?p get-borg))
@@ -301,10 +302,10 @@
   (if (eq (class ?act) Resistencia) 
         then
           (printout t ?act " Minutos ")
-          (printout t (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))
+          (printout t (round (* ?mult (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))))
         else
           (printout t ?act " Numero Repeticiones ")
-          (bind ?borgApartat (+ (/ ?nivelBorg 20) 0.65))
+          (bind ?borgApartat (+ (/ (- 11 ?nivelBorg) 20) 0.65))
           (bind ?borgApartat (* ?borgApartat ?borgApartat))
 
           (bind ?nivelActApartat (+ (/ ?nivel 20) 0.9))
@@ -313,7 +314,7 @@
           (bind ?intensidadApartat (* ?intensidadApartat ?intensidadApartat))
           (bind ?final (* (* (* ?borgApartat ?intensidadApartat) ?nivelActApartat) 35))
           (bind ?final (* ?final (/ (+ (mod ?rand 3) 9) 10)))
-          (printout t (- ?final (mod ?final 5)))
+          (printout t (round (* ?mult (- ?final (mod ?final 5)))))
   )
   (printout t crlf)
 )
@@ -324,8 +325,10 @@
   =>
   (bind ?seleccionado (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
+  (bind ?dies (send ?p get-dias_disponibles))
+  (bind ?nivelM (send ?p get-nivel_fisico))
   (bind ?rand (random))
-  (bind ?rand (+ 1 (mod ?rand 4)))
+  (bind ?rand (max 3 (min (- ?dies (- 4 ?nivelM)) 5)))
   (loop-for-count (?j 1 ?rand) do
     (printout t crlf "[ ---------- SESSION " ?j "--------- ]" crlf)
     (printout t "[ --------- Calentamiento --------- ]" crlf)
@@ -334,7 +337,7 @@
 
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act)
+      (calcula-reps-mins ?p ?act 0.5)
     )
 
     (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
@@ -343,7 +346,7 @@
 
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act)
+      (calcula-reps-mins ?p ?act 1)
     )
 
     (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
@@ -352,7 +355,7 @@
     
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act)
+      (calcula-reps-mins ?p ?act 0.5)
     )
     (printout t crlf)
   )
