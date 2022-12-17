@@ -299,7 +299,11 @@
   (bind ?nivelBorg (send ?p get-borg))
   (bind ?rand (random))
   (bind ?day_type (send ?act get-aerobico))
-  (if (eq ?day_type ?tipus_selec) then return 0)
+  (printout t ?day_type crlf)
+  (printout t ?tipus_selec crlf)
+  (if (eq ?day_type ?tipus_selec) then 
+    (printout t "No -> " ?act crlf)
+    (return 0))
 
   (if (eq (class ?act) Resistencia) 
         then
@@ -336,12 +340,13 @@
     (printout t "[ --------- Calentamiento --------- ]" crlf)
     (bind ?rand (random))
     (bind ?rand (min (+ 3 (mod ?rand 3)) (length$ $?seleccionado)))
-    (bind ?day_type TRUE)
-    (if (eq 0 (mod ?j 2)) then (bind ?day_type FALSE))
+    (bind ?day_type "true")
+    (if (eq 0 (mod ?j 2)) then (bind ?day_type "false"))
+    (printout t ?day_type crlf)
 
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 0.5 TRUE)
+      (calcula-reps-mins ?p ?act 0.5 "true")
     )
 
     (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
