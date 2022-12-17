@@ -330,6 +330,7 @@
   ?p <- (object(is-a Persona))
   =>
   (bind ?seleccionado (send [programa] get-contiene))
+
   (printout t "Recomendamos realizar: " crlf)
   (bind ?dies (send ?p get-dias_disponibles))
   (bind ?nivelM (send ?p get-nivel_fisico))
@@ -346,7 +347,10 @@
 
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 0.5 "true")
+      (bind ?calentamiento (send ?act get-calentamiento))
+      (if (eq ?calentamiento "true") then
+        (calcula-reps-mins ?p ?act 0.5 "true")
+      )
     )
 
     (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
