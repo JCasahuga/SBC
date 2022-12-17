@@ -325,30 +325,30 @@
   (bind ?seleccionado (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
   (printout t crlf "[ --------- Calentamiento --------- ]" crlf)
-	(loop-for-count (?i 1 (length$ $?seleccionado)) do
-    (bind ?rand (random))
-    (if (> ?rand 1600000000) then
-      (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act)
-    )
+  (bind ?rand (random))
+  (bind ?rand (min (+ 3 (mod ?rand 3)) (length$ $?seleccionado)))
+
+	(loop-for-count (?i 1 ?rand) do
+    (bind ?act (nth$ ?i ?seleccionado))
+    (calcula-reps-mins ?p ?act)
   )
 
   (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
-	(loop-for-count (?i 1 (length$ $?seleccionado)) do
-    (bind ?rand (random))
-    (if (> ?rand 1600000000) then
-      (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act)
-    )
+  (bind ?rand (random))
+  (bind ?rand (min (+ 1 (mod ?rand 1)) (length$ $?seleccionado)))
+
+	(loop-for-count (?i 1 ?rand) do
+    (bind ?act (nth$ ?i ?seleccionado))
+    (calcula-reps-mins ?p ?act)
   )
 
   (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
-	(loop-for-count (?i 1 (length$ $?seleccionado)) do
-    (bind ?rand (random))
-    (if (> ?rand 1600000000) then
-      (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act)
-    )
+  (bind ?rand (random))
+  (bind ?rand (min (+ 2 (mod ?rand 3)) (length$ $?seleccionado)))
+  
+	(loop-for-count (?i 1 ?rand) do
+    (bind ?act (nth$ ?i ?seleccionado))
+    (calcula-reps-mins ?p ?act)
   )
   ;(printout t (send [programa] get-contiene))
 )
