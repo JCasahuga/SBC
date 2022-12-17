@@ -303,11 +303,18 @@
     (bind ?rand (random))
     (if (> ?rand 1600000000) then
       (bind ?act (nth$ ?i ?seleccionado))
+      (bind ?nivel (send ?p get-nivel_fisico))
+      (bind ?intensidad (send ?act get-intensidad))
+      (bind ?nivelBorg (send ?p get-borg))
       (if (eq (class ?i) Ejercicio.Resistencia) 
-        then  (printout t ?act " Minutos ")
-        else  (printout t ?act " Numero Repeticiones ")
+        then
+          (printout t ?act " Minutos ")
+          (printout t (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10))
+        else
+          (printout t ?act " Numero Repeticiones ")
+          (printout t (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10))
       )
-      (printout t (* (mod ?rand 5) 5) crlf)
+      (printout t crlf)
     )
   )
 
