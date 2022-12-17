@@ -122,13 +122,13 @@
   (send ?p put-nivel_fisico ?actividad)
 )
 
-; (defrule p_borg "Pregunta escala de borg"
-;   (nuevoUsuario)
-;   ?p <- (object(is-a Persona))
-;   =>
-;   (bind ?actividad (question-numeric-range "Después de caminar durante 15 minutos, indique del 1 al 10 como de agato (1: Como si nada, 10: Ya no puedo más)" 1 10))
-;   (assert(iborg ?ans))
-; )
+(defrule p_borg "Pregunta escala de borg"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?borg (question-numeric-range "Después de caminar durante 15 minutos, indique del 1 al 10 como de agato se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
+  (send ?p put-borg ?borg)
+)
 
 (defrule p_corazon "Pregunta problemas del corazón"
 	(nuevoUsuario)
@@ -259,11 +259,11 @@
 		(bind ?enfermedad (nth$ ?i $?enfermedades))
 
 		(if (or (eq (class ?enfermedad) Mobilidad) (eq (class ?enfermedad) Partes_cuerpo)) then 
-        (bind ?ejercicios_prohibidos (send ?enfermedad get-impide_hacer))
-        (loop-for-count (?j 1 (length$ ?ejercicios_prohibidos)) do
-          (bind ?ejercio_borrar (nth$ ?j ?ejercicios_prohibidos))
-          (elimina-apariciones ?ejercio_borrar)
-        )
+      (bind ?ejercicios_prohibidos (send ?enfermedad get-impide_hacer))
+      (loop-for-count (?j 1 (length$ ?ejercicios_prohibidos)) do
+        (bind ?ejercio_borrar (nth$ ?j ?ejercicios_prohibidos))
+        (elimina-apariciones ?ejercio_borrar)
+      )
 		)
 	)
 )
@@ -276,18 +276,12 @@
   (bind ?ejercicios (send ?p get-puede_realizar))
 
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
-    (printout t "ANEM PROIU BE" crlf)
     (bind ?eje (nth$ ?i ?ejercicios))
-    (printout t "ANEM PROIU BE1" crlf)
     (bind ?nivel_ejercicio (send ?eje get-intensidad))
-    (printout t "ANEM PROIU BE2" crlf)
     (if (< (+ ?nivel 1) ?nivel_ejercicio) then
-      (printout t "ANEM PROIU BE3" crlf)
       (elimina-apariciones ?eje)
-      (printout t "ANEM PROIU BE4" crlf)
     )
   )
-  (printout t "HELLOYUYYY" crlf)
 )
 
 (defrule resultado_ejercicios "Lista posibles ejercicios"

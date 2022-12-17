@@ -63,6 +63,14 @@
         rdfs:range xsd:integer .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#borg
+:borg rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdf:type owl:FunctionalProperty ;
+      rdfs:domain :Persona ;
+      rdfs:range xsd:integer .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#calentamiento
 :calentamiento rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
