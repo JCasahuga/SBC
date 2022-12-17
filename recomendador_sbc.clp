@@ -324,31 +324,37 @@
   =>
   (bind ?seleccionado (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
-  (printout t crlf "[ --------- Calentamiento --------- ]" crlf)
   (bind ?rand (random))
-  (bind ?rand (min (+ 3 (mod ?rand 3)) (length$ $?seleccionado)))
+  (bind ?rand (+ 1 (mod ?rand 4)))
+  (loop-for-count (?j 1 ?rand) do
+    (printout t crlf "[ ---------- SESSION " ?j "--------- ]" crlf)
+    (printout t "[ --------- Calentamiento --------- ]" crlf)
+    (bind ?rand (random))
+    (bind ?rand (min (+ 3 (mod ?rand 3)) (length$ $?seleccionado)))
 
-	(loop-for-count (?i 1 ?rand) do
-    (bind ?act (nth$ ?i ?seleccionado))
-    (calcula-reps-mins ?p ?act)
-  )
+    (loop-for-count (?i 1 ?rand) do
+      (bind ?act (nth$ ?i ?seleccionado))
+      (calcula-reps-mins ?p ?act)
+    )
 
-  (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
-  (bind ?rand (random))
-  (bind ?rand (min (+ 1 (mod ?rand 1)) (length$ $?seleccionado)))
+    (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
+    (bind ?rand (random))
+    (bind ?rand (min (+ 1 (mod ?rand 1)) (length$ $?seleccionado)))
 
-	(loop-for-count (?i 1 ?rand) do
-    (bind ?act (nth$ ?i ?seleccionado))
-    (calcula-reps-mins ?p ?act)
-  )
+    (loop-for-count (?i 1 ?rand) do
+      (bind ?act (nth$ ?i ?seleccionado))
+      (calcula-reps-mins ?p ?act)
+    )
 
-  (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
-  (bind ?rand (random))
-  (bind ?rand (min (+ 2 (mod ?rand 3)) (length$ $?seleccionado)))
-  
-	(loop-for-count (?i 1 ?rand) do
-    (bind ?act (nth$ ?i ?seleccionado))
-    (calcula-reps-mins ?p ?act)
+    (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
+    (bind ?rand (random))
+    (bind ?rand (min (+ 2 (mod ?rand 3)) (length$ $?seleccionado)))
+    
+    (loop-for-count (?i 1 ?rand) do
+      (bind ?act (nth$ ?i ?seleccionado))
+      (calcula-reps-mins ?p ?act)
+    )
+    (printout t crlf)
   )
   ;(printout t (send [programa] get-contiene))
 )
