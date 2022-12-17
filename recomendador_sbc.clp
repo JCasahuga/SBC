@@ -258,11 +258,15 @@
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
     (bind ?eje (nth$ ?i ?ejercicios))
     (bind ?nivel_ejercicio (send ?eje get-intensidad))
-    (printout t ?eje crlf)
-    (printout t ?nivel_ejercicio crlf)
-    (printout t ?nivel crlf)
-    (if (< ?nivel ?nivel_ejercicio) then
-      (printout t "Funciona " crlf)
+    (if (< (+ ?nivel 1) ?nivel_ejercicio) then
+      (bind ?var (send [programa] get-contiene))
+      (loop-for-count (?j 1 (length$ ?var)) do 
+        (bind ?ejercicio_actual (nth$ ?j ?var))
+        (if (eq ?ejercicio_actual ?eje) then
+          (bind ?delorted (nth$ ?j ?var))
+          (slot-delete$ [programa] contiene ?j ?j)
+        )
+      )
     )
   )
 
