@@ -226,6 +226,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                   :Mano_Muñeca ,
                   :Piernas ,
                   :Pies_Tobillos ;
+        :aerobico "true"^^xsd:boolean ;
+        :calentamiento "false"^^xsd:boolean ;
         :intensidad 3 .
 
 
@@ -236,6 +238,8 @@ owl:topDataProperty rdfs:domain :Persona ;
                      :Lumbar_Espalda ,
                      :Piernas ,
                      :Pies_Tobillos ;
+           :aerobico "true"^^xsd:boolean ;
+           :calentamiento "false"^^xsd:boolean ;
            :intensidad 5 .
 
 
@@ -275,7 +279,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                    :Lumbar_Espalda ,
                    :Piernas ,
                    :Pies_Tobillos ;
-         :intensidad 3 .
+         :intensidad 3 ;
+         :aerobico "false"^^xsd:boolean ;
+         :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cardiopatía
@@ -291,7 +297,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                   :Lumbar_Espalda ,
                   :Piernas ,
                   :Pies_Tobillos ;
-        :intensidad 5 .
+        :intensidad 5 ;
+        :aerobico "true"^^xsd:boolean ;
+        :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cuello_Hombros
@@ -323,49 +331,63 @@ owl:topDataProperty rdfs:domain :Persona ;
 :Ejercicio_biceps rdf:type owl:NamedIndividual ,
                            :Fuerza ;
                   :ejercita :Brazos ;
-                  :intensidad 3 .
+                  :intensidad 3 ;
+                  :aerobico "false"^^xsd:boolean ;
+                  :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
 :Elevacion_piernas rdf:type owl:NamedIndividual ,
                             :Fuerza ;
                    :ejercita :Piernas ;
-                   :intensidad 3 .
+                   :intensidad 3 ;
+                   :aerobico "false"^^xsd:boolean ;
+                   :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_cuadriceps
 :Estiramiento_cuadriceps rdf:type owl:NamedIndividual ,
                                   :Flexibilidad ;
                          :ejercita :Piernas ;
-                         :intensidad 1 .
+                         :intensidad 1 ;
+                         :aerobico "false"^^xsd:boolean ;
+                         :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquitibiales
 :Estiramiento_isquitibiales rdf:type owl:NamedIndividual ,
                                      :Flexibilidad ;
                             :ejercita :Piernas ;
-                            :intensidad 1 .
+                            :intensidad 1 ;
+                            :aerobico "false"^^xsd:boolean ;
+                            :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
 :Estiramiento_muñeca rdf:type owl:NamedIndividual ,
                               :Flexibilidad ;
                      :ejercita :Mano_Muñeca ;
-                     :intensidad 1 .
+                     :intensidad 1 ;
+                     :aerobico "false"^^xsd:boolean ;
+                     :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
 :Estiramiento_tobillos rdf:type owl:NamedIndividual ,
                                 :Flexibilidad ;
                        :ejercita :Pies_Tobillos ;
-                       :intensidad 1 .
+                       :intensidad 1 ;
+                       :aerobico "false"^^xsd:boolean ;
+                       :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
 :Estiramiento_triceps rdf:type owl:NamedIndividual ,
                                :Flexibilidad ;
                       :ejercita :Brazos ;
-                      :intensidad 1 .
+                      :intensidad 1 ;
+                      :aerobico "false"^^xsd:boolean ;
+                      :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estrés
@@ -377,35 +399,45 @@ owl:topDataProperty rdfs:domain :Persona ;
 :Extension_cadera rdf:type owl:NamedIndividual ,
                            :Fuerza ;
                   :ejercita :Cadera ;
-                  :intensidad 2 .
+                  :intensidad 2 ;
+                  :aerobico "false"^^xsd:boolean ;
+                  :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_rodilla
 :Extension_rodilla rdf:type owl:NamedIndividual ,
                             :Fuerza ;
                    :ejercita :Piernas ;
-                   :intensidad 2 .
+                   :intensidad 2 ;
+                   :aerobico "false"^^xsd:boolean ;
+                   :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_triceps
 :Extension_triceps rdf:type owl:NamedIndividual ,
                             :Fuerza ;
                    :ejercita :Brazos ;
-                   :intensidad 2 .
+                   :intensidad 2 ;
+                   :aerobico "false"^^xsd:boolean ;
+                   :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
 :Flexion_cadera rdf:type owl:NamedIndividual ,
                          :Flexibilidad ;
                 :ejercita :Cadera ;
-                :intensidad 1 .
+                :intensidad 1 ;
+                :aerobico "false"^^xsd:boolean ;
+                :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
 :Flexion_hombros rdf:type owl:NamedIndividual ,
                           :Fuerza ;
                  :ejercita :Cuello_Hombros ;
-                 :intensidad 2 .
+                 :intensidad 2 ;
+                 :aerobico "false"^^xsd:boolean ;
+                 :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
@@ -413,7 +445,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                           :Equilibrio ;
                  :ejercita :Piernas ,
                            :Pies_Tobillos ;
-                 :intensidad 2 .
+                 :intensidad 2 ;
+                 :aerobico "false"^^xsd:boolean ;
+                 :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
@@ -421,7 +455,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                          :Flexibilidad ;
                 :ejercita :Cadera ,
                           :Lumbar_Espalda ;
-                :intensidad 1 .
+                :intensidad 1 ;
+                :aerobico "false"^^xsd:boolean ;
+                :calentamiento "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertensión
@@ -465,7 +501,9 @@ owl:topDataProperty rdfs:domain :Persona ;
 :Levantar_brazos rdf:type owl:NamedIndividual ,
                           :Fuerza ;
                  :ejercita :Brazos ;
-                 :intensidad 2 .
+                 :intensidad 2 ;
+                 :aerobico "false"^^xsd:boolean ;
+                 :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
@@ -502,7 +540,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                     :Mano_Muñeca ,
                     :Piernas ,
                     :Pies_Tobillos ;
-          :intensidad 4 .
+          :intensidad 4 ;
+          :aerobico "true"^^xsd:boolean ;
+          :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Obesidad
@@ -547,7 +587,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                 :Cuello_Hombros ,
                 :Lumbar_Espalda ,
                 :Mano_Muñeca ;
-      :intensidad 5 .
+      :intensidad 5 ;
+      :aerobico "true"^^xsd:boolean ;
+      :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Subir_escaleras
@@ -557,7 +599,9 @@ owl:topDataProperty rdfs:domain :Persona ;
                            :Lumbar_Espalda ,
                            :Piernas ,
                            :Pies_Tobillos ;
-                 :intensidad 4 .
+                 :intensidad 4 ;
+                 :aerobico "true"^^xsd:boolean ;
+                 :calentamiento "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#programa
