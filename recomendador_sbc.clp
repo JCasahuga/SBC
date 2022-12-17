@@ -122,13 +122,13 @@
   (send ?p put-nivel_fisico ?actividad)
 )
 
-(defrule p_borg "Pregunta escala de borg"
-  (nuevoUsuario)
-  ?p <- (object(is-a Persona))
-  =>
-  (bind ?actividad (question-numeric-range "Después de caminar durante 15 minutos, indique del 1 al 10 como de agato (1: Como si nada, 10: Ya no puedo más)" 1 10))
-  (assert(iborg ?ans))
-)
+; (defrule p_borg "Pregunta escala de borg"
+;   (nuevoUsuario)
+;   ?p <- (object(is-a Persona))
+;   =>
+;   (bind ?actividad (question-numeric-range "Después de caminar durante 15 minutos, indique del 1 al 10 como de agato (1: Como si nada, 10: Ya no puedo más)" 1 10))
+;   (assert(iborg ?ans))
+; )
 
 (defrule p_corazon "Pregunta problemas del corazón"
 	(nuevoUsuario)
@@ -222,19 +222,38 @@
     (printout t "Le recomendamos que vuelva a consultar un plan personalizado cuando disponga de ellos, grácias." crlf)
     (halt)
 	)
+  (focus FILTRO_ENFERMEDADES)
 )
 
-(defrule posibles_ejercicios "Llista posibles exercicis"
+;/////////////////////////////         FILTRO             /////////////////////////////////
+
+(defmodule FILTRO_ENFERMEDADES
+	(import MAIN ?ALL)
+	(import QUESTIONS ?ALL)
+	(export ?ALL)
+)
+
+(deffunction elimina-apariciones (?eje)
+  (bind ?var (send [programa] get-contiene))
+  (loop-for-count (?j 1 (length$ ?var)) do 
+    (bind ?ejercicio_actual (nth$ ?j ?var))
+    (if (eq ?ejercicio_actual ?eje) then
+      (slot-delete$ [programa] contiene ?j ?j)
+    )
+  )
+)
+
+(defrule filtrar-mobilidad "Filtra aquellos ejercicios que no puede hacer por su mobilidad"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
   (bind ?nivel (send ?p get-nivel_fisico))
   (bind ?ejercicios (send ?p get-puede_realizar))
+
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
      (bind ?ejercicio (nth$ ?i $?ejercicios))
      (slot-insert$ [programa] contiene 1 ?ejercicio)
   )
-
   (bind ?enfermedades (send ?p get-sufre))
 	(loop-for-count (?i 1 (length$ $?enfermedades)) do
 		(bind ?enfermedad (nth$ ?i $?enfermedades))
@@ -242,41 +261,39 @@
 		(if (or (eq (class ?enfermedad) Mobilidad) (eq (class ?enfermedad) Partes_cuerpo)) then 
         (bind ?ejercicios_prohibidos (send ?enfermedad get-impide_hacer))
         (loop-for-count (?j 1 (length$ ?ejercicios_prohibidos)) do
-          
           (bind ?ejercio_borrar (nth$ ?j ?ejercicios_prohibidos))
-
-          (bind ?var (send [programa] get-contiene))
-          (loop-for-count (?k 1 (length$ ?var)) do 
-            (bind ?ejercicio_actual (nth$ ?k ?var))
-            (if (eq ?ejercicio_actual ?ejercio_borrar) then
-              (bind ?delorted (nth$ ?k ?var))
-              (slot-delete$ [programa] contiene ?k ?k)
-            )
-
-            (if (eq ?ejercicio_actual ?ejercio_borrar) then
-              (bind ?delorted (nth$ ?k ?var))
-              (slot-delete$ [programa] contiene ?k ?k)
-            )
-          )
+          (elimina-apariciones ?ejercio_borrar)
         )
 		)
 	)
+)
+
+(defrule filtrar-nivel "Filtra aquellos ejercicios que no puede hacer por su nivel"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?nivel (send ?p get-nivel_fisico))
+  (bind ?ejercicios (send ?p get-puede_realizar))
 
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
+    (printout t "ANEM PROIU BE" crlf)
     (bind ?eje (nth$ ?i ?ejercicios))
+    (printout t "ANEM PROIU BE1" crlf)
     (bind ?nivel_ejercicio (send ?eje get-intensidad))
+    (printout t "ANEM PROIU BE2" crlf)
     (if (< (+ ?nivel 1) ?nivel_ejercicio) then
-      (bind ?var (send [programa] get-contiene))
-      (loop-for-count (?j 1 (length$ ?var)) do 
-        (bind ?ejercicio_actual (nth$ ?j ?var))
-        (if (eq ?ejercicio_actual ?eje) then
-          (bind ?delorted (nth$ ?j ?var))
-          (slot-delete$ [programa] contiene ?j ?j)
-        )
-      )
+      (printout t "ANEM PROIU BE3" crlf)
+      (elimina-apariciones ?eje)
+      (printout t "ANEM PROIU BE4" crlf)
     )
   )
+  (printout t "HELLOYUYYY" crlf)
+)
 
+(defrule resultado_ejercicios "Lista posibles ejercicios"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
   (bind ?seleccionado (send [programa] get-contiene))
   (printout t "Recomendamos realizar: " crlf)
   (printout t crlf "[ --------- Calentamiento --------- ]" crlf)
