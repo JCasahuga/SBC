@@ -282,6 +282,14 @@
       (elimina-apariciones ?eje)
     )
   )
+  (focus RESULTADO)
+)
+
+(defmodule RESULTADO
+	(import MAIN ?ALL)
+	(import QUESTIONS ?ALL)
+  (import FILTRO_ENFERMEDADES ?ALL)
+	(export ?ALL)
 )
 
 (defrule resultado_ejercicios "Lista posibles ejercicios"
