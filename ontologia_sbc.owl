@@ -226,6 +226,7 @@ owl:topDataProperty rdfs:domain :Persona .
                   :Mano_Muñeca ,
                   :Piernas ,
                   :Pies_Tobillos ;
+        :aerobico "true"^^xsd:boolean ;
         :intensidad 3 .
 
 
@@ -236,6 +237,7 @@ owl:topDataProperty rdfs:domain :Persona .
                      :Lumbar_Espalda ,
                      :Piernas ,
                      :Pies_Tobillos ;
+           :aerobico "true"^^xsd:boolean ;
            :intensidad 5 .
 
 
@@ -275,6 +277,7 @@ owl:topDataProperty rdfs:domain :Persona .
                    :Lumbar_Espalda ,
                    :Piernas ,
                    :Pies_Tobillos ;
+         :aerobico "false"^^xsd:boolean ;
          :intensidad 3 .
 
 
@@ -291,6 +294,7 @@ owl:topDataProperty rdfs:domain :Persona .
                   :Lumbar_Espalda ,
                   :Piernas ,
                   :Pies_Tobillos ;
+        :aerobico "true"^^xsd:boolean ;
         :intensidad 5 .
 
 
@@ -323,6 +327,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Ejercicio_biceps rdf:type owl:NamedIndividual ,
                            :Fuerza ;
                   :ejercita :Brazos ;
+                  :aerobico "false"^^xsd:boolean ;
                   :intensidad 3 .
 
 
@@ -330,6 +335,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Elevacion_piernas rdf:type owl:NamedIndividual ,
                             :Fuerza ;
                    :ejercita :Piernas ;
+                   :aerobico "false"^^xsd:boolean ;
                    :intensidad 3 .
 
 
@@ -337,6 +343,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Estiramiento_cuadriceps rdf:type owl:NamedIndividual ,
                                   :Flexibilidad ;
                          :ejercita :Piernas ;
+                         :aerobico "false"^^xsd:boolean ;
                          :intensidad 1 .
 
 
@@ -344,6 +351,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Estiramiento_isquitibiales rdf:type owl:NamedIndividual ,
                                      :Flexibilidad ;
                             :ejercita :Piernas ;
+                            :aerobico "false"^^xsd:boolean ;
                             :intensidad 1 .
 
 
@@ -351,6 +359,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Estiramiento_muñeca rdf:type owl:NamedIndividual ,
                               :Flexibilidad ;
                      :ejercita :Mano_Muñeca ;
+                     :aerobico "false"^^xsd:boolean ;
                      :intensidad 1 .
 
 
@@ -358,6 +367,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Estiramiento_tobillos rdf:type owl:NamedIndividual ,
                                 :Flexibilidad ;
                        :ejercita :Pies_Tobillos ;
+                       :aerobico "false"^^xsd:boolean ;
                        :intensidad 1 .
 
 
@@ -365,6 +375,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Estiramiento_triceps rdf:type owl:NamedIndividual ,
                                :Flexibilidad ;
                       :ejercita :Brazos ;
+                      :aerobico "false"^^xsd:boolean ;
                       :intensidad 1 .
 
 
@@ -377,6 +388,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Extension_cadera rdf:type owl:NamedIndividual ,
                            :Fuerza ;
                   :ejercita :Cadera ;
+                  :aerobico "false"^^xsd:boolean ;
                   :intensidad 2 .
 
 
@@ -384,6 +396,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Extension_rodilla rdf:type owl:NamedIndividual ,
                             :Fuerza ;
                    :ejercita :Piernas ;
+                   :aerobico "false"^^xsd:boolean ;
                    :intensidad 2 .
 
 
@@ -391,6 +404,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Extension_triceps rdf:type owl:NamedIndividual ,
                             :Fuerza ;
                    :ejercita :Brazos ;
+                   :aerobico "false"^^xsd:boolean ;
                    :intensidad 2 .
 
 
@@ -398,6 +412,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Flexion_cadera rdf:type owl:NamedIndividual ,
                          :Flexibilidad ;
                 :ejercita :Cadera ;
+                :aerobico "false"^^xsd:boolean ;
                 :intensidad 1 .
 
 
@@ -405,6 +420,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Flexion_hombros rdf:type owl:NamedIndividual ,
                           :Fuerza ;
                  :ejercita :Cuello_Hombros ;
+                 :aerobico "false"^^xsd:boolean ;
                  :intensidad 2 .
 
 
@@ -421,6 +437,7 @@ owl:topDataProperty rdfs:domain :Persona .
                          :Flexibilidad ;
                 :ejercita :Cadera ,
                           :Lumbar_Espalda ;
+                :aerobico "false"^^xsd:boolean ;
                 :intensidad 1 .
 
 
@@ -465,6 +482,7 @@ owl:topDataProperty rdfs:domain :Persona .
 :Levantar_brazos rdf:type owl:NamedIndividual ,
                           :Fuerza ;
                  :ejercita :Brazos ;
+                 :aerobico "false"^^xsd:boolean ;
                  :intensidad 2 .
 
 
@@ -502,6 +520,7 @@ owl:topDataProperty rdfs:domain :Persona .
                     :Mano_Muñeca ,
                     :Piernas ,
                     :Pies_Tobillos ;
+          :aerobico "true"^^xsd:boolean ;
           :intensidad 4 .
 
 
@@ -547,6 +566,7 @@ owl:topDataProperty rdfs:domain :Persona .
                 :Cuello_Hombros ,
                 :Lumbar_Espalda ,
                 :Mano_Muñeca ;
+      :aerobico "true"^^xsd:boolean ;
       :intensidad 5 .
 
 
@@ -557,6 +577,7 @@ owl:topDataProperty rdfs:domain :Persona .
                            :Lumbar_Espalda ,
                            :Piernas ,
                            :Pies_Tobillos ;
+                 :aerobico "true"^^xsd:boolean ;
                  :intensidad 4 .
 
 

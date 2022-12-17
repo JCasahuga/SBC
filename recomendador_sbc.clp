@@ -293,11 +293,13 @@
 	(export ?ALL)
 )
 
-(deffunction calcula-reps-mins (?p ?act ?mult)
+(deffunction calcula-reps-mins (?p ?act ?mult ?tipus_selec)
   (bind ?nivel (send ?p get-nivel_fisico))
   (bind ?intensidad (send ?act get-intensidad))
   (bind ?nivelBorg (send ?p get-borg))
   (bind ?rand (random))
+  (bind ?day_type (send ?act get-aerobico))
+  (if (eq ?day_type ?tipus_selec) then return 0)
 
   (if (eq (class ?act) Resistencia) 
         then
@@ -334,10 +336,12 @@
     (printout t "[ --------- Calentamiento --------- ]" crlf)
     (bind ?rand (random))
     (bind ?rand (min (+ 3 (mod ?rand 3)) (length$ $?seleccionado)))
+    (bind ?day_type TRUE)
+    (if (eq 0 (mod ?j 2)) then (bind ?day_type FALSE))
 
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 0.5)
+      (calcula-reps-mins ?p ?act 0.5 TRUE)
     )
 
     (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
@@ -346,7 +350,7 @@
 
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 1)
+      (calcula-reps-mins ?p ?act 1 ?day_type)
     )
 
     (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
@@ -355,7 +359,7 @@
     
     (loop-for-count (?i 1 ?rand) do
       (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 0.5)
+      (calcula-reps-mins ?p ?act 0.5 ?day_type)
     )
     (printout t crlf)
   )
