@@ -296,14 +296,24 @@
   (bind ?nivel (send ?p get-nivel_fisico))
   (bind ?intensidad (send ?act get-intensidad))
   (bind ?nivelBorg (send ?p get-borg))
+  (bind ?rand (random))
 
   (if (eq (class ?act) Resistencia) 
         then
           (printout t ?act " Minutos ")
-          (printout t (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10))
+          (printout t (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))
         else
           (printout t ?act " Numero Repeticiones ")
-          (printout t (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10))
+          (bind ?borgApartat (+ (/ ?nivelBorg 20) 0.65))
+          (bind ?borgApartat (* ?borgApartat ?borgApartat))
+
+          (bind ?nivelActApartat (+ (/ ?nivel 20) 0.9))
+
+          (bind ?intensidadApartat (+ (/ (- 5 ?intensidad) 20) 0.9))
+          (bind ?intensidadApartat (* ?intensidadApartat ?intensidadApartat))
+          (bind ?final (* (* (* ?borgApartat ?intensidadApartat) ?nivelActApartat) 35))
+          (bind ?final (* ?final (/ (+ (mod ?rand 3) 9) 10)))
+          (printout t (- ?final (mod ?final 5)))
   )
   (printout t crlf)
 )
