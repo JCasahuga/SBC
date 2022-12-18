@@ -293,24 +293,19 @@
 	(export ?ALL)
 )
 
-(deffunction calcula-reps-mins (?p ?act ?mult ?tipus_selec)
+(deffunction calcula-reps-mins (?p ?act ?mult)
   (bind ?nivel (send ?p get-nivel_fisico))
   (bind ?intensidad (send ?act get-intensidad))
   (bind ?nivelBorg (send ?p get-borg))
   (bind ?rand (random))
-  (bind ?day_type (send ?act get-aerobico))
-  (printout t ?day_type crlf)
-  (printout t ?tipus_selec crlf)
-  (if (eq ?day_type ?tipus_selec) then 
-    (printout t "No -> " ?act crlf)
-    (return 0))
-
+  
+  (bind ?nombre_act (send ?act get-nombre))
   (if (eq (class ?act) Resistencia) 
         then
-          (printout t ?act " Minutos ")
+          (printout t ?nombre_act " Minutos ")
           (printout t (round (* ?mult (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))))
         else
-          (printout t ?act " Numero Repeticiones ")
+          (printout t ?nombre_act " Numero Repeticiones ")
           (bind ?borgApartat (+ (/ (- 11 ?nivelBorg) 20) 0.65))
           (bind ?borgApartat (* ?borgApartat ?borgApartat))
 
@@ -325,6 +320,80 @@
   (printout t crlf)
 )
 
+;Elimina el ejercicio ?eje de la instancia etapa
+(deffunction elimina-ejercicio (?eje)
+  (bind ?var (send [etapa] get-contiene))
+
+  (loop-for-count (?j 1 (length$ ?var)) do 
+    (bind ?ejercicio_actual (nth$ ?j ?var))
+    (if (eq ?ejercicio_actual ?eje) then
+      (slot-delete$ [etapa] contiene ?j ?j)
+    )
+  )
+)
+
+; Elimina los ejercicios que no cumplen las condiciones de etapa
+; ?aerobico -> 0 no se trata, 1 se tratan
+; ?calentamiento -> 0 no se trata, 1 se tratan
+; La xor de ?aerobico i ?calentamiento deberia dar siempre true.
+; ?negado -> 0 elimina las que no son X, 1 -> elimina las que son X
+(deffunction elimina-ejercicios (?aerobico ?calentamiento ?negado)
+  (bind ?var (send [etapa] get-contiene))
+
+  (loop-for-count (?i 1 (length$ ?var)) do 
+    (bind ?eje (nth$ ?i ?var))
+    (if (eq ?aerobico 1)
+      then 
+      (if (eq ?negado 1) 
+        then ; elimina no aerobicos
+          (if (eq (send ?eje get-aerobico) "true") then (elimina-ejercicio ?eje))
+        else ; elimina aerobicos
+          (if (eq (send ?eje get-aerobico) "false") then (elimina-ejercicio ?eje))
+      )
+    )
+    (if (eq ?calentamiento 1)
+      then 
+      (if (eq ?negado 1) 
+        then ; elimina no aerobicos
+          (if (eq (send ?eje get-calentamiento) "true") then (elimina-ejercicio ?eje))
+        else ; elimina aerobicos
+          (if (eq (send ?eje get-calentamiento) "false") then (elimina-ejercicio ?eje))
+      )
+    )
+  )
+)
+
+; ?seleccion -> multislot con una lista de ejercicios a filtrar, 
+; ?aerobico -> 0 si no importa, 1 si solo queremos aerobicos, 2 si solo queremos no aerobicos
+; ?calentamiento -> 0 si no importa, 1 si solo queremos calentamientos, 2 si solo queremos no calentamientos
+; se guarda en la instancia etapa
+(deffunction obtener-subseleccion (?aerobico ?calentamiento)
+  (if (> (length$ (send [etapa] get-contiene)) 0) 
+    then (slot-delete$ [etapa] contiene 1 (max 1 (length$ (send [etapa] get-contiene))))
+  )
+
+  (bind ?seleccionado (send [programa] get-contiene))
+  (loop-for-count (?i 1 (length$ $?seleccionado)) do
+    (bind ?act_len (length$ (send [etapa] get-contiene)))
+    (bind ?pos_random (+ 1 (mod (random) (max 1 ?act_len))))
+    (bind ?act (nth$ ?i ?seleccionado))
+    (slot-insert$ [etapa] contiene ?pos_random ?act)
+  )
+  
+  (if (eq ?aerobico 1) 
+    then (elimina-ejercicios 1 0 0)
+    else (if (eq ?aerobico 2)
+      then (elimina-ejercicios 1 0 1))
+  )
+
+  (if (eq ?calentamiento 1) 
+    then (elimina-ejercicios 0 1 0)
+    else (if (eq ?calentamiento 2)
+      then (elimina-ejercicios 0 1 1))
+  )
+
+)
+
 (defrule resultado_ejercicios "Lista posibles ejercicios"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
@@ -334,41 +403,51 @@
   (printout t "Recomendamos realizar: " crlf)
   (bind ?dies (send ?p get-dias_disponibles))
   (bind ?nivelM (send ?p get-nivel_fisico))
-  (bind ?rand (random))
-  (bind ?rand (max 3 (min (- ?dies (- 4 ?nivelM)) 5)))
-  (loop-for-count (?j 1 ?rand) do
-    (printout t crlf "[ ---------- SESSION " ?j "--------- ]" crlf)
-    (printout t "[ --------- Calentamiento --------- ]" crlf)
-    (bind ?rand (random))
-    (bind ?rand (min (+ 3 (mod ?rand 3)) (length$ $?seleccionado)))
-    (bind ?day_type "true")
-    (if (eq 0 (mod ?j 2)) then (bind ?day_type "false"))
-    (printout t ?day_type crlf)
+  (bind ?n_sesiones (max 3 (min (- ?dies (- 4 ?nivelM)) 5)))
+  (loop-for-count (?j 1 ?n_sesiones) do
 
-    (loop-for-count (?i 1 ?rand) do
-      (bind ?act (nth$ ?i ?seleccionado))
-      (bind ?calentamiento (send ?act get-calentamiento))
-      (if (eq ?calentamiento "true") then
-        (calcula-reps-mins ?p ?act 0.5 "true")
-      )
+    (bind ?day_type (mod ?j 2))
+    ;(printout t ?day_type crlf)    
+    
+    (printout t crlf "[ ------------ SESSION " ?j "----------- ]" crlf)
+
+    (printout t "[ --------- Calentamiento --------- ]" crlf)
+
+    (obtener-subseleccion 0 1)
+    (bind ?subseleccion (send [etapa] get-contiene))
+
+    (bind ?rand (random))
+    (bind ?n_subseleccion (min (+ 3 (mod ?rand 3)) (length$ $?subseleccion)))
+
+    (loop-for-count (?i 1 ?n_subseleccion) do
+      (bind ?act (nth$ ?i ?subseleccion))
+      (calcula-reps-mins ?p ?act 0.7)
     )
 
     (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
-    (bind ?rand (random))
-    (bind ?rand (min (+ 1 (mod ?rand 1)) (length$ $?seleccionado)))
 
-    (loop-for-count (?i 1 ?rand) do
-      (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 1 ?day_type)
+    (obtener-subseleccion ?day_type 0)
+    (bind ?subseleccion (send [etapa] get-contiene))
+
+    (bind ?rand (random))
+    (bind ?n_subseleccion (min (+ 1 (mod ?rand 1)) (length$ $?subseleccion)))
+
+    (loop-for-count (?i 1 ?n_subseleccion) do
+      (bind ?act (nth$ ?i ?subseleccion))
+      (calcula-reps-mins ?p ?act 1)
     )
 
     (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
+
+    (obtener-subseleccion 2 0)
+    (bind ?subseleccion (send [etapa] get-contiene))
+
     (bind ?rand (random))
-    (bind ?rand (min (+ 2 (mod ?rand 3)) (length$ $?seleccionado)))
-    
-    (loop-for-count (?i 1 ?rand) do
-      (bind ?act (nth$ ?i ?seleccionado))
-      (calcula-reps-mins ?p ?act 0.5 ?day_type)
+    (bind ?n_subseleccion (min (+ 2 (mod ?rand 3)) (length$ $?subseleccion)))
+
+    (loop-for-count (?i 1 ?n_subseleccion) do
+      (bind ?act (nth$ ?i ?subseleccion))
+      (calcula-reps-mins ?p ?act 0.7)
     )
     (printout t crlf)
   )
