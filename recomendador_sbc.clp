@@ -10,10 +10,10 @@
   (initial-fact)
   =>
   (printout t crlf crlf)
-	(printout t "**************************************************************************************************************"crlf)
-	(printout t "*                                          AUTO DIAGNOSTIC                                                   *"crlf)
-	(printout t "*                      Bienvenido al recomendador de ejercicios para personas mayores!                       *"crlf)
-	(printout t "**************************************************************************************************************"crlf)
+	(printout t "|============================================================================================================|"crlf)
+	(printout t "|                                          AUTO DIAGNOSTIC                                                   |"crlf)
+	(printout t "|                      Bienvenido al recomendador de ejercicios para personas mayores!                       |"crlf)
+	(printout t "|============================================================================================================|"crlf)
 	(printout t crlf crlf)
   (assert (nuevoUsuario))
 	(focus QUESTIONS)
@@ -85,7 +85,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (printout t "Como se llama usted?" crlf)
+  (printout t "| > Como se llama usted?" crlf)
   (bind ?nombre (read))
   (send ?p put-nombre ?nombre)
 )
@@ -94,7 +94,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?edad (question-numeric-bigger "Que edad tiene usted? (Este programa solo hace recomendaciones para mayores de 65 años)" 65))
+  (bind ?edad (question-numeric-bigger "| > Que edad tiene usted? (Este programa solo hace recomendaciones para mayores de 65 años)" 65))
   (send ?p put-edad ?edad)
 )
 
@@ -102,7 +102,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?altura (question-numeric-bigger "Introduzca su altura en centímetros." 0))
+  (bind ?altura (question-numeric-bigger "| > Introduzca su altura en centímetros." 0))
   (send ?p put-altura ?altura)
 )
 
@@ -110,7 +110,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?altura (question-numeric-bigger "Introduzca su peso en kg." 0))
+  (bind ?altura (question-numeric-bigger "| > Introduzca su peso en kg." 0))
   (send ?p put-peso ?altura)
 )
 
@@ -118,7 +118,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?actividad (question-numeric-range "Ponga un número del 1 al 5 que represente su nivel de actividad (1: Nada activo, 5: Muy activo)." 1 5))
+  (bind ?actividad (question-numeric-range "| > Ponga un número del 1 al 5 que represente su nivel de actividad (1: Nada activo, 5: Muy activo)." 1 5))
   (send ?p put-nivel_fisico ?actividad)
 )
 
@@ -126,7 +126,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?borg (question-numeric-range "Después de caminar durante 30 minutos, indique del 1 al 10 como de agato se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
+  (bind ?borg (question-numeric-range "| > Después de caminar durante 15 minutos, indique del 1 al 10 como de agato se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
   (send ?p put-borg ?borg)
 )
 
@@ -135,10 +135,10 @@
 	?p <- (object(is-a Persona))
   ;?cardiopatia <- (object(is-a Cardiorespiratoria))
 	=>
-	(bind ?ans (yes-or-no-p "Ha padecido (o padece) problemas del corazón? (si/no)."))
+	(bind ?ans (yes-or-no-p "| > Ha padecido (o padece) problemas del corazón? (si/no)."))
 	(if (eq ?ans TRUE) then
 		(slot-insert$ [Jubilado] sufre 1 [Cardiopatía])
-    (bind ?ans (yes-or-no-p "Tiene usted hipertensión? (si/no): "))
+    (bind ?ans (yes-or-no-p "| > Tiene usted hipertensión? (si/no): "))
     (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Hipertensión]))
 	)
 )
@@ -147,11 +147,11 @@
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
 	=>
-	(bind ?ans (yes-or-no-p "Sufre algun problema de mobilidad? (si/no)."))
+	(bind ?ans (yes-or-no-p "| > Sufre algun problema de mobilidad? (si/no)."))
 	(if (eq ?ans TRUE) then
     (bind ?quedan-partes TRUE)
     (while (eq ?quedan-partes TRUE) do 
-    	(bind ?parte (ask-question "En que parte del cuerpo sufre problemas? " Brazos brazos Brazo brazo Cadera cadera Cuello cuello Hombros hombros Hombro hombro Lumbar lumbar Espalda espalda Manos manos Mano mano Muñecas muñecas Muñeca muñeca Piernas piernas Pierna pierna Pies pies Pie pie Tobillos tobillos Tobillo tobillo)) ;Could be extended with Rodillas rodillas Rodilla rodilla Pecho pecho Dedos dedos Dedo dedo Pantorrilla pantorrilla Cintura cintura 
+    	(bind ?parte (ask-question "| > En que parte del cuerpo sufre problemas? " Brazos brazos Brazo brazo Cadera cadera Cuello cuello Hombros hombros Hombro hombro Lumbar lumbar Espalda espalda Manos manos Mano mano Muñecas muñecas Muñeca muñeca Piernas piernas Pierna pierna Pies pies Pie pie Tobillos tobillos Tobillo tobillo)) ;Could be extended with Rodillas rodillas Rodilla rodilla Pecho pecho Dedos dedos Dedo dedo Pantorrilla pantorrilla Cintura cintura 
       (if (or (eq (lowcase ?parte) brazo) (eq (lowcase ?parte) brazos)) then
         (slot-insert$ [Jubilado] sufre 1 [Brazos])
       )
@@ -173,7 +173,7 @@
       (if (or (eq (lowcase ?parte) pies) (eq (lowcase ?parte) pie) (eq (lowcase ?parte) tobillo) (eq (lowcase ?parte) tobillos)) then
         (slot-insert$ [Jubilado] sufre 1 [Pies_Tobillos])
       )
-      (bind ?quedan-partes (yes-or-no-p "Tienes más partes del cuerpo con problemas de mobilidad? (si/no)"))
+      (bind ?quedan-partes (yes-or-no-p "| > Tienes más partes del cuerpo con problemas de mobilidad? (si/no)"))
     )
 	)
 )
@@ -182,7 +182,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?ans (yes-or-no-p "Tiene usted diabetes? (si/no)"))
+  (bind ?ans (yes-or-no-p "| > Tiene usted diabetes? (si/no)"))
   (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Diabetes]))
 )
 
@@ -191,7 +191,7 @@
 	(nuevoUsuario)
 	?p <- (object(is-a Persona))
 	=>
-	(bind ?ans (yes-or-no-p "Ha sido diagnosticado de alguna enfermedad psicologica? (si/no)"))
+	(bind ?ans (yes-or-no-p "| > Ha sido diagnosticado de alguna enfermedad psicologica? (si/no)"))
 	(if (eq ?ans TRUE) then
     (bind ?ans (yes-or-no-p "Sufre usted ansiedad? (si/no)"))
     (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Ansiedad]))
@@ -208,7 +208,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?ans (yes-or-no-p "Sufre (o ha sufrido) usted cáncer? (si/no)"))
+  (bind ?ans (yes-or-no-p "| > Sufre (o ha sufrido) usted cáncer? (si/no)"))
   (if (eq ?ans TRUE) then (slot-insert$ [Jubilado] sufre 1 [Cáncer]))
 )
 
@@ -216,7 +216,7 @@
 	(nuevoUsuario)
   ?p <- (object(is-a Persona))
 	=>
-	(bind ?ans (ask-question "Cuantos días a la semana podria relizar el programa personalizado? " 0 1 2 3 4 5 6 7))
+	(bind ?ans (ask-question "| > Cuantos días a la semana podria relizar el programa personalizado? " 0 1 2 3 4 5 6 7))
 	(if (< ?ans 3) then 
     (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento para menos de 3 días por semana." crlf)
     (printout t "Le recomendamos que vuelva a consultar un plan personalizado cuando disponga de ellos, grácias." crlf)
@@ -302,11 +302,10 @@
   (bind ?nombre_act (send ?act get-nombre))
   (if (eq (class ?act) Resistencia) 
         then
-          (printout t ?nombre_act " durante ")
+          (printout t "|| " ?nombre_act " Minutos ")
           (printout t (round (* ?mult (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))))
-          (printout t " minutos.")
         else
-          (printout t ?nombre_act " realizar ")
+          (printout t "|| " ?nombre_act " Numero Repeticiones ")
           (bind ?borgApartat (+ (/ (- 11 ?nivelBorg) 20) 0.65))
           (bind ?borgApartat (* ?borgApartat ?borgApartat))
 
@@ -317,7 +316,6 @@
           (bind ?final (* (* (* ?borgApartat ?intensidadApartat) ?nivelActApartat) 35))
           (bind ?final (* ?final (/ (+ (mod ?rand 3) 9) 10)))
           (printout t (round (* ?mult (- ?final (mod ?final 5)))))
-          (printout t " repeticiones.")
   )
   (printout t crlf)
 )
@@ -393,32 +391,33 @@
     else (if (eq ?calentamiento 2)
       then (elimina-ejercicios 0 1 1))
   )
-)
 
-(deffunction suficientes-ejercicios ()
-  (bind ?len_sel (length$ (send [programa] get-contiene)))
-  (obtener-subseleccion 0 1)
-  (bind ?len_sub1 (length$ (send [etapa] get-contiene)))
-  (obtener-subseleccion 0 0)
-  (bind ?len_sub2 (length$ (send [etapa] get-contiene)))
-  (obtener-subseleccion 2 0)
-  (bind ?len_sub3 (length$ (send [etapa] get-contiene)))
-
-  (if (or (< ?len_sel 5) (< ?len_sub1 3) (< ?len_sub2 3) (< ?len_sub3 3))
-    then 
-    (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento dadas tus condiciones." crlf)
-    (printout t "Le recomendamos que dencanse y se recupere, grácias." crlf)
-    (halt)
-  )
 )
 
 (defrule resultado_ejercicios "Lista posibles ejercicios"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (suficientes-ejercicios)
+  (bind ?seleccionado (send [programa] get-contiene))
 
-  (printout t "Recomendamos realizar: " crlf)
+  (printout t crlf " Processando informacion... " crlf)
+
+  (printout t crlf " ################################## " crlf)
+  (printout t " ========== Informacion =========== " crlf)
+  (printout t " ################################## " crlf crlf)
+  (printout t " Nombre:         " (send ?p get-nombre) crlf)
+  (printout t " Edat:           " (send ?p get-edad) " años" crlf)
+  (printout t " Altura:         " (send ?p get-altura) " cm"crlf)
+  (printout t " Peso:           " (send ?p get-peso) " kg" crlf)
+  (printout t " Factor:          0.9" crlf)
+
+  (printout t crlf " Processando programa... " crlf)
+
+  (printout t crlf " ################################## " crlf)
+  (printout t " =========== Programa ============= " crlf)
+  (printout t " ################################## " crlf)
+
+  (printout t crlf "|| Recomendamos realizar: " crlf)
   (bind ?dies (send ?p get-dias_disponibles))
   (bind ?nivelM (send ?p get-nivel_fisico))
   (bind ?n_sesiones (max 3 (min (- ?dies (- 4 ?nivelM)) 5)))
@@ -427,9 +426,11 @@
     (bind ?day_type (mod ?j 2))
     ;(printout t ?day_type crlf)    
     
-    (printout t crlf "[ ------------ SESSION " ?j "----------- ]" crlf)
+    (printout t "||" crlf "|==================================|" crlf)
+    (printout t "|            SESSION " ?j "             |")
+    (printout t crlf "|==================================|" crlf)
 
-    (printout t "[ --------- Calentamiento --------- ]" crlf)
+    (printout t "|| >>>>>>>> Calentamiento <<<<<<<< " crlf)
 
     (obtener-subseleccion 0 1)
     (bind ?subseleccion (send [etapa] get-contiene))
@@ -442,15 +443,10 @@
       (calcula-reps-mins ?p ?act 0.7)
     )
 
-    (printout t crlf "[ -------- Entrenamiento --------- ]" crlf)
+    (printout t "||" crlf "|| >>>>>>>> Entrenamiento <<<<<<<< " crlf)
 
     (obtener-subseleccion ?day_type 0)
     (bind ?subseleccion (send [etapa] get-contiene))
-    (if (< (length$ ?subseleccion) 1)
-      then
-      (obtener-subseleccion 0 0)
-      (bind ?subseleccion (send [etapa] get-contiene))
-    )
 
     (bind ?rand (random))
     (bind ?n_subseleccion (min (+ 1 (mod ?rand 1)) (length$ $?subseleccion)))
@@ -460,7 +456,7 @@
       (calcula-reps-mins ?p ?act 1)
     )
 
-    (printout t crlf "[ --------- Finalizacion --------- ]" crlf)
+    (printout t "||" crlf "|| >>>>>>>> Finalizacion <<<<<<<<< " crlf)
 
     (obtener-subseleccion 2 0)
     (bind ?subseleccion (send [etapa] get-contiene))
@@ -472,7 +468,7 @@
       (bind ?act (nth$ ?i ?subseleccion))
       (calcula-reps-mins ?p ?act 0.7)
     )
-    (printout t crlf)
+    (printout t "||" crlf)
   )
   ;(printout t (send [programa] get-contiene))
 )
