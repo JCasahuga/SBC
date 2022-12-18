@@ -31,12 +31,12 @@
 
 ; Asks a question which has to be answered with one of the allowed values.
 (deffunction ask-question (?question $?allowed_values)
-   (printout t crlf ?question crlf)
+   (printout t crlf ?question crlf "| > ")
    (bind ?answer (read))
    (if (lexemep ?answer)
        then (bind ?answer (lowcase ?answer)))
    (while (not (member ?answer ?allowed_values)) do
-      (printout t "Lo sentimos pero no le hemos ententido, vuelva a escribir la respuesta." crlf)
+      (printout t "Lo sentimos pero no le hemos ententido, vuelva a escribir la respuesta." crlf "| > ")
       (bind ?answer (read))
       (if (lexemep ?answer)
           then (bind ?answer (lowcase ?answer))))
@@ -53,11 +53,11 @@
 
 ; Asks a question which has to be answered with a numberic value wchich must be >= than the given one.
 (deffunction question-numeric-bigger (?question ?lowerbound)
-  (printout t crlf ?question crlf)
+  (printout t crlf ?question crlf "| > ")
 	(bind ?respuesta (read))
 	(while (< ?respuesta ?lowerbound) do
     (format t "Porfavor, introduzca un valor mayor o igual que %d." ?lowerbound)
-    (printout t crlf)
+    (printout t crlf "| > ")
 		(bind ?respuesta (read))
 	)
 	?respuesta
@@ -67,11 +67,11 @@
 (deffunction question-numeric-range (?question ?rangini ?rangfi)
   (printout t crlf)
 	(format t "%s [%d, %d]" ?question ?rangini ?rangfi)
-  (printout t crlf)
+  (printout t crlf "| > ")
 	(bind ?respuesta (read))
 	(while (not(and(>= ?respuesta ?rangini)(<= ?respuesta ?rangfi))) do
 		(format t "Porfavor, introduzca un valor entre %d i %d." ?rangini ?rangfi)
-    (printout t crlf)
+    (printout t crlf "| > ")
 		(bind ?respuesta (read))
 	)
 	?respuesta
@@ -85,7 +85,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (printout t "| > Como se llama usted?" crlf)
+  (printout t "| > Como se llama usted?" crlf "| > ")
   (bind ?nombre (read))
   (send ?p put-nombre ?nombre)
 )
@@ -302,10 +302,11 @@
   (bind ?nombre_act (send ?act get-nombre))
   (if (eq (class ?act) Resistencia) 
         then
-          (printout t "|| " ?nombre_act " Minutos ")
+          (printout t "|| Realize " ?nombre_act " durante ")
           (printout t (round (* ?mult (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))))
+          (printout t " minutos.")
         else
-          (printout t "|| " ?nombre_act " Numero Repeticiones ")
+          (printout t "|| Realize de " ?nombre_act " un total de ")
           (bind ?borgApartat (+ (/ (- 11 ?nivelBorg) 20) 0.65))
           (bind ?borgApartat (* ?borgApartat ?borgApartat))
 
@@ -316,6 +317,7 @@
           (bind ?final (* (* (* ?borgApartat ?intensidadApartat) ?nivelActApartat) 35))
           (bind ?final (* ?final (/ (+ (mod ?rand 3) 9) 10)))
           (printout t (round (* ?mult (- ?final (mod ?final 5)))))
+          (printout t " repeticiones.")
   )
   (printout t crlf)
 )
@@ -419,9 +421,9 @@
   (printout t " ################################## " crlf)
 
   (printout t crlf "|| Recomendamos realizar: " crlf)
-  (bind ?dies (send ?p get-dias_disponibles))
+  (bind ?dias_disponibles (send ?p get-dias_disponibles))
   (bind ?nivelM (send ?p get-nivel_fisico))
-  (bind ?n_sesiones (max 3 (min (- ?dies (- 4 ?nivelM)) 5)))
+  (bind ?n_sesiones (max 3 (min (- ?dias_disponibles (- 4 ?nivelM)) 5)))
   (loop-for-count (?j 1 ?n_sesiones) do
 
     (bind ?day_type (mod ?j 2))
@@ -437,7 +439,7 @@
     (bind ?subseleccion (send [etapa] get-contiene))
 
     (bind ?rand (random))
-    (bind ?n_subseleccion (min (+ 3 (mod ?rand 3)) (length$ $?subseleccion)))
+    (bind ?n_subseleccion (min (+ 2 (mod ?rand 2)) (length$ $?subseleccion)))
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
@@ -450,7 +452,8 @@
     (bind ?subseleccion (send [etapa] get-contiene))
 
     (bind ?rand (random))
-    (bind ?n_subseleccion (min (+ 1 (mod ?rand 1)) (length$ $?subseleccion)))
+    (bind ?n_subseleccion (min (+ 2 (mod ?rand 1)) (length$ $?subseleccion)))
+    (if (eq ?day_type 0) then (bind ?n_subseleccion (+ 2 ?n_subseleccion)))
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
@@ -463,13 +466,18 @@
     (bind ?subseleccion (send [etapa] get-contiene))
 
     (bind ?rand (random))
-    (bind ?n_subseleccion (min (+ 2 (mod ?rand 3)) (length$ $?subseleccion)))
+    (bind ?n_subseleccion (min (+ 2 (mod ?rand 2)) (length$ $?subseleccion)))
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
       (calcula-reps-mins ?p ?act (* ?factor 0.7))
     )
-    (printout t "||" crlf)
+    (printout t "||" crlf "||" crlf)
+    (bind ?dias_descanso (- ?dias_disponibles ?n_sesiones))
+    (if (not (eq ?dias_descanso 0)) 
+      then (printout t "| Le recomendamos que descanse " ?dias_descanso " de los " ?dias_disponibles " que dispone.")
+    )
+    (printout crlf "| " crlf "| Recuerde también beber de forma abudante mientras realiza deporte.")
   )
   ;(printout t (send [programa] get-contiene))
 )
