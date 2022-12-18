@@ -430,7 +430,7 @@
   (printout t " ========== Informacion =========== " crlf)
   (printout t " ################################## " crlf crlf)
   (printout t " Nombre:         " (send ?p get-nombre) crlf)
-  (printout t " Edat:           " (send ?p get-edad) " años" crlf)
+  (printout t " Edad:           " (send ?p get-edad) " años" crlf)
   (printout t " Altura:         " (send ?p get-altura) " cm"crlf)
   (printout t " Peso:           " (send ?p get-peso) " kg" crlf)
   (printout t " Factor:         " ?factor crlf)
