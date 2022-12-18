@@ -94,7 +94,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?edad (question-numeric-bigger "| > Que edad tiene usted? (Este programa solo hace recomendaciones para mayores de 65 años)" 65))
+  (bind ?edad (question-numeric-range "| > Que edad tiene usted? (Este programa solo hace recomendaciones para mayores de 65 años)" 65 150))
   (send ?p put-edad ?edad)
 )
 
@@ -102,7 +102,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?altura (question-numeric-bigger "| > Introduzca su altura en centímetros." 0))
+  (bind ?altura (question-numeric-range "| > Introduzca su altura en centímetros." 50 225))
   (send ?p put-altura ?altura)
 )
 
@@ -110,7 +110,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?altura (question-numeric-bigger "| > Introduzca su peso en kg." 0))
+  (bind ?altura (question-numeric-range "| > Introduzca su peso en kg." 40 200))
   (send ?p put-peso ?altura)
 )
 
