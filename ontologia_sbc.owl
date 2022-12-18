@@ -355,6 +355,7 @@ owl:topDataProperty rdfs:domain :Persona .
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Elevacion_piernas
 :Elevacion_piernas rdf:type owl:NamedIndividual ,
+                            :Equilibrio ,
                             :Fuerza ;
                    :ejercita :Piernas ;
                    :aerobico "false"^^xsd:boolean ;
@@ -393,6 +394,27 @@ owl:topDataProperty rdfs:domain :Persona .
                      :nombre "Estiramiento de muñeca" .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_pantorrillas
+:Estiramiento_pantorrillas rdf:type owl:NamedIndividual ,
+                                    :Flexibilidad ;
+                           :ejercita :Piernas ;
+                           :aerobico "false"^^xsd:boolean ;
+                           :calentamiento "true"^^xsd:boolean ;
+                           :intensidad 1 ;
+                           :nombre "Estiramiento de Pantorrillas" .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tendones_muslo
+:Estiramiento_tendones_muslo rdf:type owl:NamedIndividual ,
+                                      :Flexibilidad ;
+                             :ejercita :Cadera ,
+                                       :Lumbar_Espalda ;
+                             :aerobico "false"^^xsd:boolean ;
+                             :calentamiento "true"^^xsd:boolean ;
+                             :intensidad 2 ;
+                             :nombre "Estiramiento de los Tendones del muslo" .
+
+
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
 :Estiramiento_tobillos rdf:type owl:NamedIndividual ,
                                 :Flexibilidad ;
@@ -420,6 +442,7 @@ owl:topDataProperty rdfs:domain :Persona .
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Extension_cadera
 :Extension_cadera rdf:type owl:NamedIndividual ,
+                           :Equilibrio ,
                            :Fuerza ;
                   :ejercita :Cadera ;
                   :aerobico "false"^^xsd:boolean ;
@@ -450,7 +473,8 @@ owl:topDataProperty rdfs:domain :Persona .
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_cadera
 :Flexion_cadera rdf:type owl:NamedIndividual ,
-                         :Flexibilidad ;
+                         :Flexibilidad ,
+                         :Fuerza ;
                 :ejercita :Cadera ;
                 :aerobico "false"^^xsd:boolean ;
                 :calentamiento "false"^^xsd:boolean ;
@@ -470,13 +494,25 @@ owl:topDataProperty rdfs:domain :Persona .
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_plantar
 :Flexion_plantar rdf:type owl:NamedIndividual ,
-                          :Equilibrio ;
+                          :Equilibrio ,
+                          :Fuerza ;
                  :ejercita :Piernas ,
                            :Pies_Tobillos ;
                  :aerobico "false"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
                  :intensidad 2 ;
                  :nombre "Flexión plantar" .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_rodilla
+:Flexion_rodilla rdf:type owl:NamedIndividual ,
+                          :Equilibrio ,
+                          :Fuerza ;
+                 :ejercita :Piernas ;
+                 :aerobico "false"^^xsd:boolean ;
+                 :calentamiento "false"^^xsd:boolean ;
+                 :intensidad 2 ;
+                 :nombre "Flexion de rodilla" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
@@ -534,6 +570,16 @@ owl:topDataProperty rdfs:domain :Persona .
                  :calentamiento "false"^^xsd:boolean ;
                  :intensidad 2 ;
                  :nombre "levantamiento de brazos" .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantarse_de_una_silla
+:Levantarse_de_una_silla rdf:type owl:NamedIndividual ,
+                                  :Fuerza ;
+                         :ejercita :Brazos ;
+                         :aerobico "false"^^xsd:boolean ;
+                         :calentamiento "false"^^xsd:boolean ;
+                         :intensidad 3 ;
+                         :nombre "Levantarse de una silla" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Lumbar_Espalda
