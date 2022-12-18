@@ -371,7 +371,7 @@ owl:topDataProperty rdfs:domain :Persona .
                          :aerobico "false"^^xsd:boolean ;
                          :calentamiento "true"^^xsd:boolean ;
                          :intensidad 1 ;
-                         :nombre "Estiramiento de cuádriceps" .
+                         :nombre "estiramiento de cuádriceps" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_isquitibiales
@@ -381,7 +381,7 @@ owl:topDataProperty rdfs:domain :Persona .
                             :aerobico "false"^^xsd:boolean ;
                             :calentamiento "true"^^xsd:boolean ;
                             :intensidad 1 ;
-                            :nombre "Estiramiento de isquitibiales" .
+                            :nombre "estiramiento de isquitibiales" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
@@ -391,7 +391,7 @@ owl:topDataProperty rdfs:domain :Persona .
                      :aerobico "false"^^xsd:boolean ;
                      :calentamiento "true"^^xsd:boolean ;
                      :intensidad 1 ;
-                     :nombre "Estiramiento de muñeca" .
+                     :nombre "estiramiento de muñeca" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_pantorrillas
@@ -401,7 +401,7 @@ owl:topDataProperty rdfs:domain :Persona .
                            :aerobico "false"^^xsd:boolean ;
                            :calentamiento "true"^^xsd:boolean ;
                            :intensidad 1 ;
-                           :nombre "Estiramiento de Pantorrillas" .
+                           :nombre "estiramiento de Pantorrillas" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tendones_muslo
@@ -412,7 +412,7 @@ owl:topDataProperty rdfs:domain :Persona .
                              :aerobico "false"^^xsd:boolean ;
                              :calentamiento "true"^^xsd:boolean ;
                              :intensidad 2 ;
-                             :nombre "Estiramiento de los Tendones del muslo" .
+                             :nombre "estiramiento de los Tendones del muslo" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_tobillos
@@ -422,7 +422,7 @@ owl:topDataProperty rdfs:domain :Persona .
                        :aerobico "false"^^xsd:boolean ;
                        :calentamiento "true"^^xsd:boolean ;
                        :intensidad 1 ;
-                       :nombre "Estiramiento de tobillos" .
+                       :nombre "estiramiento de tobillos" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_triceps
@@ -432,7 +432,7 @@ owl:topDataProperty rdfs:domain :Persona .
                       :aerobico "false"^^xsd:boolean ;
                       :calentamiento "true"^^xsd:boolean ;
                       :intensidad 1 ;
-                      :nombre "Estiramiento de triceps" .
+                      :nombre "estiramiento de triceps" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estrés
@@ -479,7 +479,7 @@ owl:topDataProperty rdfs:domain :Persona .
                 :aerobico "false"^^xsd:boolean ;
                 :calentamiento "false"^^xsd:boolean ;
                 :intensidad 1 ;
-                :nombre "Flexión de cadera" .
+                :nombre "flexión de cadera" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_hombros
@@ -512,7 +512,7 @@ owl:topDataProperty rdfs:domain :Persona .
                  :aerobico "false"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
                  :intensidad 2 ;
-                 :nombre "Flexion de rodilla" .
+                 :nombre "flexion de rodilla" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_tronco
@@ -523,7 +523,7 @@ owl:topDataProperty rdfs:domain :Persona .
                 :aerobico "false"^^xsd:boolean ;
                 :calentamiento "false"^^xsd:boolean ;
                 :intensidad 1 ;
-                :nombre "Flexión de tronco" .
+                :nombre "flexión de tronco" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Hipertensión
