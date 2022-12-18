@@ -126,7 +126,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?borg (question-numeric-range "Después de caminar durante 15 minutos, indique del 1 al 10 como de agato se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
+  (bind ?borg (question-numeric-range "Después de caminar durante 30 minutos, indique del 1 al 10 como de agato se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
   (send ?p put-borg ?borg)
 )
 
@@ -302,10 +302,11 @@
   (bind ?nombre_act (send ?act get-nombre))
   (if (eq (class ?act) Resistencia) 
         then
-          (printout t ?nombre_act " Minutos ")
+          (printout t ?nombre_act " durante ")
           (printout t (round (* ?mult (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))))
+          (printout t " minutos.")
         else
-          (printout t ?nombre_act " Numero Repeticiones ")
+          (printout t ?nombre_act " realizar ")
           (bind ?borgApartat (+ (/ (- 11 ?nivelBorg) 20) 0.65))
           (bind ?borgApartat (* ?borgApartat ?borgApartat))
 
@@ -316,6 +317,7 @@
           (bind ?final (* (* (* ?borgApartat ?intensidadApartat) ?nivelActApartat) 35))
           (bind ?final (* ?final (/ (+ (mod ?rand 3) 9) 10)))
           (printout t (round (* ?mult (- ?final (mod ?final 5)))))
+          (printout t " repeticiones.")
   )
   (printout t crlf)
 )
@@ -391,14 +393,30 @@
     else (if (eq ?calentamiento 2)
       then (elimina-ejercicios 0 1 1))
   )
+)
 
+(deffunction suficientes-ejercicios ()
+  (bind ?len_sel (length$ (send [programa] get-contiene)))
+  (obtener-subseleccion 0 1)
+  (bind ?len_sub1 (length$ (send [etapa] get-contiene)))
+  (obtener-subseleccion 0 0)
+  (bind ?len_sub2 (length$ (send [etapa] get-contiene)))
+  (obtener-subseleccion 2 0)
+  (bind ?len_sub3 (length$ (send [etapa] get-contiene)))
+
+  (if (or (< ?len_sel 5) (< ?len_sub1 3) (< ?len_sub2 3) (< ?len_sub3 3))
+    then 
+    (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento dadas tus condiciones." crlf)
+    (printout t "Le recomendamos que dencanse y se recupere, grácias." crlf)
+    (halt)
+  )
 )
 
 (defrule resultado_ejercicios "Lista posibles ejercicios"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?seleccionado (send [programa] get-contiene))
+  (suficientes-ejercicios)
 
   (printout t "Recomendamos realizar: " crlf)
   (bind ?dies (send ?p get-dias_disponibles))
@@ -428,6 +446,11 @@
 
     (obtener-subseleccion ?day_type 0)
     (bind ?subseleccion (send [etapa] get-contiene))
+    (if (< (length$ ?subseleccion) 1)
+      then
+      (obtener-subseleccion 0 0)
+      (bind ?subseleccion (send [etapa] get-contiene))
+    )
 
     (bind ?rand (random))
     (bind ?n_subseleccion (min (+ 1 (mod ?rand 1)) (length$ $?subseleccion)))
