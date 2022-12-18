@@ -279,7 +279,7 @@
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
     (bind ?eje (nth$ ?i ?ejercicios))
     (bind ?nivel_ejercicio (send ?eje get-intensidad))
-    (if (< (+ ?nivel 1) ?nivel_ejercicio) then
+    (if (< (+ ?nivel 0) ?nivel_ejercicio) then
       (elimina-apariciones ?eje)
     )
   )
@@ -306,6 +306,7 @@
           (printout t (round (* ?mult (+ (+(/ (* (* ?nivel (- 6 ?intensidad)) (- 11 ?nivelBorg)) 5) 10) (mod ?rand 5)))))
           (printout t " minutos.")
         else
+          (if (eq ?nombre_act "caminar") then (bind ?mult (* ?mult 1.4)))
           (printout t "|| Realize de " ?nombre_act " un total de ")
           (bind ?borgApartat (+ (/ (- 11 ?nivelBorg) 20) 0.65))
           (bind ?borgApartat (* ?borgApartat ?borgApartat))
@@ -396,10 +397,30 @@
 
 )
 
+(deffunction suficientes-ejercicios ()
+  (bind ?len_sel (length$ (send [programa] get-contiene)))
+  (obtener-subseleccion 0 1)
+  (bind ?len_sub1 (length$ (send [etapa] get-contiene)))
+  (obtener-subseleccion 0 2)
+  (bind ?len_sub2 (length$ (send [etapa] get-contiene)))
+  (obtener-subseleccion 2 0)
+  (bind ?len_sub3 (length$ (send [etapa] get-contiene)))
+
+  (if (or (< ?len_sel 5) (< ?len_sub1 3) (< ?len_sub2 3) (< ?len_sub3 3))
+    then 
+    (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento dadas tus condiciones." crlf)
+    (printout t "Le recomendamos que dencanse y se recupere, grácias." crlf)
+    (halt)
+  )
+)
+
+
 (defrule resultado_ejercicios "Lista posibles ejercicios"
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
+  (suficientes-ejercicios)
+
   (bind ?seleccionado (send [programa] get-contiene))
   (bind ?factor (+ (* (- (/ (send ?p get-altura) (* (send ?p get-peso) (send ?p get-edad))) 0.002) 7.5) 0.5))
 
@@ -448,11 +469,11 @@
 
     (printout t "||" crlf "|| >>>>>>>> Entrenamiento <<<<<<<< " crlf)
 
-    (obtener-subseleccion ?day_type 0)
+    (obtener-subseleccion ?day_type 2)
     (bind ?subseleccion (send [etapa] get-contiene))
 
     (bind ?rand (random))
-    (bind ?n_subseleccion (min (+ 2 (mod ?rand 1)) (length$ $?subseleccion)))
+    (bind ?n_subseleccion (min (+ 1 (mod ?rand 1)) (length$ $?subseleccion)))
     (if (eq ?day_type 0) then (bind ?n_subseleccion (+ 2 ?n_subseleccion)))
 
     (loop-for-count (?i 1 ?n_subseleccion) do
@@ -472,12 +493,12 @@
       (bind ?act (nth$ ?i ?subseleccion))
       (calcula-reps-mins ?p ?act (* ?factor 0.7))
     )
-    (printout t "||" crlf "||" crlf)
-    (bind ?dias_descanso (- ?dias_disponibles ?n_sesiones))
-    (if (not (eq ?dias_descanso 0)) 
-      then (printout t "| Le recomendamos que descanse " ?dias_descanso " de los " ?dias_disponibles " que dispone.")
-    )
-    (printout crlf "| " crlf "| Recuerde también beber de forma abudante mientras realiza deporte.")
+    (printout t "||" crlf)
   )
-  ;(printout t (send [programa] get-contiene))
+  (printout t "|==================================|" crlf)
+  (bind ?dias_descanso (- ?dias_disponibles ?n_sesiones))
+  (if (not (eq ?dias_descanso 0)) then 
+    (printout t "| Le recomendamos que descanse " ?dias_descanso " de los " ?dias_disponibles " que dispone.")
+  )
+  (printout t crlf "| " crlf "| Recuerde también beber de forma abudante mientras realiza deporte." crlf "|| " crlf)
 )
