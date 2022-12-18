@@ -59,6 +59,7 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#altura
 :altura rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf owl:topDataProperty ;
+        rdf:type owl:FunctionalProperty ;
         rdfs:domain :Persona ;
         rdfs:range xsd:integer .
 
@@ -140,6 +141,7 @@
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#peso
 :peso rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf owl:topDataProperty ;
+      rdf:type owl:FunctionalProperty ;
       rdfs:domain :Persona ;
       rdfs:range xsd:double .
 

@@ -399,6 +399,7 @@
   ?p <- (object(is-a Persona))
   =>
   (bind ?seleccionado (send [programa] get-contiene))
+  (bind ?factor (+ (* (- (/ (send ?p get-altura) (* (send ?p get-peso) (send ?p get-edad))) 0.002) 7.5) 0.5))
 
   (printout t crlf " Processando informacion... " crlf)
 
@@ -409,7 +410,7 @@
   (printout t " Edat:           " (send ?p get-edad) " años" crlf)
   (printout t " Altura:         " (send ?p get-altura) " cm"crlf)
   (printout t " Peso:           " (send ?p get-peso) " kg" crlf)
-  (printout t " Factor:          0.9" crlf)
+  (printout t " Factor:         " ?factor crlf)
 
   (printout t crlf " Processando programa... " crlf)
 
@@ -440,7 +441,7 @@
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
-      (calcula-reps-mins ?p ?act 0.7)
+      (calcula-reps-mins ?p ?act (* ?factor 0.7))
     )
 
     (printout t "||" crlf "|| >>>>>>>> Entrenamiento <<<<<<<< " crlf)
@@ -453,7 +454,7 @@
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
-      (calcula-reps-mins ?p ?act 1)
+      (calcula-reps-mins ?p ?act (* ?factor 1))
     )
 
     (printout t "||" crlf "|| >>>>>>>> Finalizacion <<<<<<<<< " crlf)
@@ -466,7 +467,7 @@
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
-      (calcula-reps-mins ?p ?act 0.7)
+      (calcula-reps-mins ?p ?act (* ?factor 0.7))
     )
     (printout t "||" crlf)
   )
