@@ -270,7 +270,10 @@ owl:topDataProperty rdfs:domain :Persona .
                       :Estiramiento_triceps ,
                       :Extension_triceps ,
                       :Levantar_brazos ,
-                      :Natación .
+                      :Levantarse_de_una_silla ,
+                      :Marcha ,
+                      :Natación ,
+                      :Yoga .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cadera
@@ -281,10 +284,14 @@ owl:topDataProperty rdfs:domain :Persona .
                       :Bicicleta ,
                       :Caminar ,
                       :Correr ,
+                      :Estiramiento_tendones_muslo ,
+                      :Extension_cadera ,
                       :Flexion_cadera ,
                       :Flexion_tronco ,
+                      :Marcha ,
                       :Natación ,
-                      :Subir_escaleras .
+                      :Subir_escaleras ,
+                      :Yoga .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Caminar
@@ -325,7 +332,8 @@ owl:topDataProperty rdfs:domain :Persona .
                          :Partes_cuerpo ;
                 :impide_hacer :Bailar ,
                               :Flexion_hombros ,
-                              :Natación .
+                              :Natación ,
+                              :Yoga .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Cáncer
@@ -548,6 +556,8 @@ owl:topDataProperty rdfs:domain :Persona .
                           :Estiramiento_cuadriceps ,
                           :Estiramiento_isquitibiales ,
                           :Estiramiento_muñeca ,
+                          :Estiramiento_pantorrillas ,
+                          :Estiramiento_tendones_muslo ,
                           :Estiramiento_tobillos ,
                           :Estiramiento_triceps ,
                           :Extension_cadera ,
@@ -556,8 +566,10 @@ owl:topDataProperty rdfs:domain :Persona .
                           :Flexion_cadera ,
                           :Flexion_hombros ,
                           :Flexion_plantar ,
+                          :Flexion_rodilla ,
                           :Flexion_tronco ,
                           :Levantar_brazos ,
+                          :Levantarse_de_una_silla ,
                           :Natación ,
                           :Subir_escaleras .
 
@@ -590,9 +602,12 @@ owl:topDataProperty rdfs:domain :Persona .
                               :Bicicleta ,
                               :Caminar ,
                               :Correr ,
+                              :Estiramiento_tendones_muslo ,
                               :Flexion_tronco ,
+                              :Marcha ,
                               :Natación ,
-                              :Subir_escaleras .
+                              :Subir_escaleras ,
+                              :Yoga .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Mano_Muñeca
@@ -602,6 +617,20 @@ owl:topDataProperty rdfs:domain :Persona .
              :impide_hacer :Bailar ,
                            :Estiramiento_muñeca ,
                            :Natación .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Marcha
+:Marcha rdf:type owl:NamedIndividual ,
+                 :Resistencia ;
+        :ejercita :Brazos ,
+                  :Cadera ,
+                  :Lumbar_Espalda ,
+                  :Piernas ,
+                  :Pies_Tobillos ;
+        :aerobico "true"^^xsd:boolean ;
+        :calentamiento "false"^^xsd:boolean ;
+        :intensidad 3 ;
+        :nombre "marcha" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Natación
@@ -634,10 +663,14 @@ owl:topDataProperty rdfs:domain :Persona .
                        :Caminar ,
                        :Correr ,
                        :Elevacion_piernas ,
+                       :Estiramiento_cuadriceps ,
                        :Estiramiento_isquitibiales ,
+                       :Estiramiento_pantorrillas ,
                        :Flexion_plantar ,
+                       :Marcha ,
                        :Natación ,
-                       :Subir_escaleras .
+                       :Subir_escaleras ,
+                       :Yoga .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Pies_Tobillos
@@ -650,6 +683,7 @@ owl:topDataProperty rdfs:domain :Persona .
                              :Correr ,
                              :Estiramiento_tobillos ,
                              :Flexion_plantar ,
+                             :Marcha ,
                              :Natación ,
                              :Subir_escaleras .
 
@@ -665,6 +699,20 @@ owl:topDataProperty rdfs:domain :Persona .
                  :calentamiento "false"^^xsd:boolean ;
                  :intensidad 4 ;
                  :nombre "subir escaleras" .
+
+
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Yoga
+:Yoga rdf:type owl:NamedIndividual ,
+               :Equilibrio ;
+      :ejercita :Brazos ,
+                :Cadera ,
+                :Cuello_Hombros ,
+                :Lumbar_Espalda ,
+                :Piernas ;
+      :aerobico "true"^^xsd:boolean ;
+      :calentamiento "false"^^xsd:boolean ;
+      :intensidad 2 ;
+      :nombre "yoga" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#etapa
