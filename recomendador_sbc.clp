@@ -290,7 +290,7 @@
   (loop-for-count (?i 1 (length$ $?ejercicios)) do
     (bind ?eje (nth$ ?i ?ejercicios))
     (bind ?nivel_ejercicio (send ?eje get-intensidad))
-    (if (< (+ ?nivel 0) ?nivel_ejercicio) then
+    (if (< (+ ?nivel 1) ?nivel_ejercicio) then
       (elimina-apariciones ?eje)
     )
   )
@@ -422,6 +422,7 @@
     (printout t crlf "Lo sentimos, no podemos organizar un plan de entrenamiento dadas tus condiciones." crlf)
     (printout t "Le recomendamos que dencanse y se recupere, grácias." crlf)
     (halt)
+    (exit)
   )
 )
 
@@ -485,6 +486,7 @@
 
     (bind ?rand (random))
     (bind ?n_subseleccion (min (+ 1 (mod ?rand 1)) (length$ $?subseleccion)))
+
     (if (eq ?day_type 0) then (bind ?n_subseleccion (+ 2 ?n_subseleccion)))
 
     (loop-for-count (?i 1 ?n_subseleccion) do
@@ -523,4 +525,5 @@
       (printout t ?act ": " ?descripcion crlf crlf)
     )
   )
+  (exit)
 )

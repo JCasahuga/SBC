@@ -630,8 +630,10 @@ Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repi
                           :Flexion_tronco ,
                           :Levantar_brazos ,
                           :Levantarse_de_una_silla ,
+                          :Marcha ,
                           :Natación ,
-                          :Subir_escaleras .
+                          :Subir_escaleras ,
+                          :Yoga .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantar_brazos
@@ -736,7 +738,9 @@ Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repi
                        :Estiramiento_cuadriceps ,
                        :Estiramiento_isquitibiales ,
                        :Estiramiento_pantorrillas ,
+                       :Extension_rodilla ,
                        :Flexion_plantar ,
+                       :Flexion_rodilla ,
                        :Levantarse_de_una_silla ,
                        :Marcha ,
                        :Natación ,
