@@ -456,7 +456,7 @@
   (printout t crlf "|| Recomendamos realizar: " crlf)
   (bind ?dias_disponibles (send ?p get-dias_disponibles))
   (bind ?nivelM (send ?p get-nivel_fisico))
-  (bind ?n_sesiones (max 3 (min (- ?dias_disponibles (- 4 (max ?nivelM 4))) 5)))
+  (bind ?n_sesiones (max 3 (min (- ?dias_disponibles (- 4 (min ?nivelM 4))) 5)))
   (loop-for-count (?j 1 ?n_sesiones) do
 
     (bind ?day_type (mod ?j 2))
