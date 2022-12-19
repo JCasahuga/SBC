@@ -126,7 +126,7 @@
   (nuevoUsuario)
   ?p <- (object(is-a Persona))
   =>
-  (bind ?borg (question-numeric-range "| > Después de caminar durante 15 minutos, indique del 1 al 10 como de agato se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
+  (bind ?borg (question-numeric-range "| > Después de caminar durante 15 minutos, indique del 1 al 10 como de agotado se siente (1: Como si nada, 10: Ya no puedo más)" 1 10))
   (send ?p put-borg ?borg)
 )
 
