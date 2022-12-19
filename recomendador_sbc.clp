@@ -513,7 +513,7 @@
   (if (not (eq ?dias_descanso 0)) then 
     (printout t "| Le recomendamos que descanse " ?dias_descanso " de los " ?dias_disponibles " que dispone.")
   )
-  (printout t crlf "| " crlf "| Recuerde también beber agua de forma abudante mientras realiza deporte." crlf "| " crlf)
+  (printout t crlf "| " crlf "| Recuerde también beber agua de forma abundante mientras realiza deporte." crlf "| " crlf)
   (printout t "|==================================|" crlf crlf)
 
   (bind ?descripcion (send ?p get-quiere_descripcion))
