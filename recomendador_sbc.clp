@@ -223,6 +223,17 @@
     (halt)
 	)
   (send ?p put-dias_disponibles ?ans)
+)
+
+(defrule p_descripcion "Pregunta por requiere descripcion"
+  (nuevoUsuario)
+  ?p <- (object(is-a Persona))
+  =>
+  (bind ?descripcion (yes-or-no-p "| > Quiere recibir una descripción del conjunto de ejercicios? (si/no)"))
+  (if (eq ?descripcion TRUE) 
+    then (send ?p put-quiere_descripcion "true")
+    else (send ?p put-quiere_descripcion "false")
+  )
   (focus FILTRO_ENFERMEDADES)
 )
 
@@ -452,7 +463,7 @@
     
     (printout t "||" crlf "|==================================|" crlf)
     (printout t "|            SESSION " ?j "             |")
-    (printout t crlf "|==================================|" crlf)
+    (printout t crlf "|==================================|" crlf "||" crlf)
 
     (printout t "|| >>>>>>>> Calentamiento <<<<<<<< " crlf)
 
@@ -464,7 +475,7 @@
 
     (loop-for-count (?i 1 ?n_subseleccion) do
       (bind ?act (nth$ ?i ?subseleccion))
-      (calcula-reps-mins ?p ?act (* ?factor 0.7))
+      (calcula-reps-mins ?p ?act (* ?factor 0.6))
     )
 
     (printout t "||" crlf "|| >>>>>>>> Entrenamiento <<<<<<<< " crlf)
@@ -495,10 +506,21 @@
     )
     (printout t "||" crlf)
   )
-  (printout t "|==================================|" crlf)
+  (printout t "|==================================|" crlf "| " crlf)
   (bind ?dias_descanso (- ?dias_disponibles ?n_sesiones))
   (if (not (eq ?dias_descanso 0)) then 
     (printout t "| Le recomendamos que descanse " ?dias_descanso " de los " ?dias_disponibles " que dispone.")
   )
-  (printout t crlf "| " crlf "| Recuerde también beber de forma abudante mientras realiza deporte." crlf "|| " crlf)
+  (printout t crlf "| " crlf "| Recuerde también beber de forma abudante mientras realiza deporte." crlf "| " crlf)
+  (printout t "|==================================|" crlf crlf)
+
+  (bind ?descripcion (send ?p get-quiere_descripcion))
+  (if (eq ?descripcion "true") then
+    (printout t "-- Aquí tiene la lista de ejercicios y con su descripción:" crlf crlf)
+    (loop-for-count (?i 1 (length$ ?seleccionado)) do
+      (bind ?act (nth$ ?i ?seleccionado))
+      (bind ?descripcion (send ?act get-descripcion))
+      (printout t ?act ": " ?descripcion crlf crlf)
+    )
+  )
 )

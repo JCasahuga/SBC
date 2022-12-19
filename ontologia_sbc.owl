@@ -146,6 +146,14 @@
       rdfs:range xsd:double .
 
 
+###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#quiere_descripcion
+:quiere_descripcion rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:domain :Persona ;
+                    rdfs:range xsd:boolean .
+
+
 ###  http://www.w3.org/2002/07/owl#topDataProperty
 owl:topDataProperty rdfs:domain :Persona .
 
@@ -243,6 +251,7 @@ owl:topDataProperty rdfs:domain :Persona .
                   :Pies_Tobillos ;
         :aerobico "true"^^xsd:boolean ;
         :calentamiento "false"^^xsd:boolean ;
+        :descripcion "Para esta práctica le recomendamos ir a su gimnasio o bién mirar un video." ;
         :intensidad 4 ;
         :nombre "bailar" .
 
@@ -256,6 +265,7 @@ owl:topDataProperty rdfs:domain :Persona .
                      :Pies_Tobillos ;
            :aerobico "true"^^xsd:boolean ;
            :calentamiento "false"^^xsd:boolean ;
+           :descripcion "Para esta práctica le recomendamos ir a su gimnasio o bién mirar un video." ;
            :intensidad 5 ;
            :nombre "ir en bicicleta" .
 
@@ -303,6 +313,7 @@ owl:topDataProperty rdfs:domain :Persona .
                    :Pies_Tobillos ;
          :aerobico "true"^^xsd:boolean ;
          :calentamiento "false"^^xsd:boolean ;
+         :descripcion "Camine pero tenga en cuanta que debe elevar ligeramente la barvilla i mantener los hombros hacia atras." ;
          :intensidad 1 ;
          :nombre "caminar" .
 
@@ -322,6 +333,7 @@ owl:topDataProperty rdfs:domain :Persona .
                   :Pies_Tobillos ;
         :aerobico "true"^^xsd:boolean ;
         :calentamiento "false"^^xsd:boolean ;
+        :descripcion "Ande rápidamente y con tanto impulso que, entre un paso y el siguiente, los pies o las patas quedan por un momento en el aire. Recuerde mantener la espalda recta." ;
         :intensidad 5 ;
         :nombre "correr" .
 
@@ -357,6 +369,8 @@ owl:topDataProperty rdfs:domain :Persona .
                   :ejercita :Brazos ;
                   :aerobico "false"^^xsd:boolean ;
                   :calentamiento "false"^^xsd:boolean ;
+                  :descripcion """Sujete las mancuernas con ambas manos a los costados (o alternativamente por ejemplo un paquete de arroz), con los brazos completamente extendidos y las palmas de las manos hacia adentro. Flexiona los brazos trayendo las mancuernas hacia el pecho.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                   :intensidad 3 ;
                   :nombre "ejercicio de biceps" .
 
@@ -368,6 +382,10 @@ owl:topDataProperty rdfs:domain :Persona .
                    :ejercita :Piernas ;
                    :aerobico "false"^^xsd:boolean ;
                    :calentamiento "false"^^xsd:boolean ;
+                   :descripcion """Acuéstese en el suelo con la espalda apoyada en el suelo y las piernas extendidas, coloque sus manos debajo de tu trasero o en tu lado para sostenerte y evitar que te deslices hacia atrás.
+Eleve ambas piernas hacia arriba, manteniendo tus rodillas ligeramente dobladas y tus pantorrillas paralelas al suelo.
+Mantén la posición durante unos segundos, luego baje tus piernas lentamente hacia el suelo.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                    :intensidad 3 ;
                    :nombre "elevación de piernas" .
 
@@ -378,6 +396,11 @@ owl:topDataProperty rdfs:domain :Persona .
                          :ejercita :Piernas ;
                          :aerobico "false"^^xsd:boolean ;
                          :calentamiento "true"^^xsd:boolean ;
+                         :descripcion """Párase cerca de una pared o alguna máquina de entrenamiento robusta para sostenerse.
+Tome su tobillo y suavemente traiga el talón hacia arriba y atrás hasta sentir un estiramiento en la parte delantera del muslo.
+Ajuste los músculos del estómago para evitar que se comben hacia afuera, y deja las rodillas juntas.
+Mantén esta posición durante aproximadamente 15 segundos i cambie de pierna.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                          :intensidad 1 ;
                          :nombre "estiramiento de cuádriceps" .
 
@@ -388,8 +411,10 @@ owl:topDataProperty rdfs:domain :Persona .
                             :ejercita :Piernas ;
                             :aerobico "false"^^xsd:boolean ;
                             :calentamiento "true"^^xsd:boolean ;
+                            :descripcion """Sentados en el suelo con las piernas juntas y las rodillas flexionadas, coger la punta de los dedos. Estirar las piernas todo lo que se pueda, sin soltar las puntas de los dedos de los pies. Mantener la extensión de las rodillas y la cadera hacia delante por unos segundos, y deshacer la postura lentamente. 
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                             :intensidad 1 ;
-                            :nombre "estiramiento de isquitibiales" .
+                            :nombre "estiramiento de isquiotibiales" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Estiramiento_muñeca
@@ -398,6 +423,8 @@ owl:topDataProperty rdfs:domain :Persona .
                      :ejercita :Mano_Muñeca ;
                      :aerobico "false"^^xsd:boolean ;
                      :calentamiento "true"^^xsd:boolean ;
+                     :descripcion """Doble la muñeca y apunte con la mano hacia el piso. Con la otra mano, doble suavemente la muñeca aún más hasta que sienta un estiramiento entre leve y moderado en el antebrazo. Mantenga esta posición unos 15 segundos, por lo menos. 
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                      :intensidad 1 ;
                      :nombre "estiramiento de muñeca" .
 
@@ -408,6 +435,8 @@ owl:topDataProperty rdfs:domain :Persona .
                            :ejercita :Piernas ;
                            :aerobico "false"^^xsd:boolean ;
                            :calentamiento "true"^^xsd:boolean ;
+                           :descripcion """Mientras se sostiene a una silla, mantenga una pierna atrás con la rodilla derecha y el talón pegado al suelo. Lentamente dobla los codos y la rodilla de adelante y mueve la cadera hacia adelante hasta que sientas que la pantorrilla se estira. Mantén esta posición unos 20 segundos.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                            :intensidad 1 ;
                            :nombre "estiramiento de Pantorrillas" .
 
@@ -419,6 +448,8 @@ owl:topDataProperty rdfs:domain :Persona .
                                        :Lumbar_Espalda ;
                              :aerobico "false"^^xsd:boolean ;
                              :calentamiento "true"^^xsd:boolean ;
+                             :descripcion """Extienda una pierna hacia el frente con el pie flexionado y doble la otra inclinándose ligeramente hacia atrás. La pelvis debe estar inclinada hacia delante. Mantenga la parte superior del cuerpo derecha mientras se hace el estiramiento unos 15 segundos y luego se cambia de lado.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                              :intensidad 2 ;
                              :nombre "estiramiento de los Tendones del muslo" .
 
@@ -429,6 +460,8 @@ owl:topDataProperty rdfs:domain :Persona .
                        :ejercita :Pies_Tobillos ;
                        :aerobico "false"^^xsd:boolean ;
                        :calentamiento "true"^^xsd:boolean ;
+                       :descripcion """Rote el tobillo en el sentido de las agujas del reloj y después, en sentido contrario hasta que te permita el grado de movilidad. Canvie de pie.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                        :intensidad 1 ;
                        :nombre "estiramiento de tobillos" .
 
@@ -439,6 +472,8 @@ owl:topDataProperty rdfs:domain :Persona .
                       :ejercita :Brazos ;
                       :aerobico "false"^^xsd:boolean ;
                       :calentamiento "true"^^xsd:boolean ;
+                      :descripcion """Eleve el brazo sobre la cabeza y doble el codo completamente de tal manera que la mano quede por detrás del cuello, utilizando el otro brazo para estabilizar el codo. Mantenga esta posición unos 15 segundos y luego cambie de lado.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                       :intensidad 1 ;
                       :nombre "estiramiento de triceps" .
 
@@ -455,6 +490,9 @@ owl:topDataProperty rdfs:domain :Persona .
                   :ejercita :Cadera ;
                   :aerobico "false"^^xsd:boolean ;
                   :calentamiento "false"^^xsd:boolean ;
+                  :descripcion """Acuéstese boca abajo en el suelo con las piernas extendidas detrás de usted y los brazos a lo largo del cuerpo.
+Con la espalda recta en todo momento, lleva la pierna que tiene el peso hacia atrás lentamente y sin flexionar la rodilla. Eleva y desciende la pierna de forma controlada varias veces de tal manera que sea la cadera la que dirija el movimiento.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                   :intensidad 2 ;
                   :nombre "extensión de cadera" .
 
@@ -465,6 +503,10 @@ owl:topDataProperty rdfs:domain :Persona .
                    :ejercita :Piernas ;
                    :aerobico "false"^^xsd:boolean ;
                    :calentamiento "false"^^xsd:boolean ;
+                   :descripcion """Sientese en una silla con piernas a lo ancho de la cadera i espalda recta.
+Estire la rodilla derecha lentament por unos segunes un total de 5 repeticiones.
+Repita con la rodilla izquierda.
+Repita el ejercicio durante un conjunto establecido de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                    :intensidad 2 ;
                    :nombre "extensión de rodilla" .
 
@@ -475,6 +517,8 @@ owl:topDataProperty rdfs:domain :Persona .
                    :ejercita :Brazos ;
                    :aerobico "false"^^xsd:boolean ;
                    :calentamiento "false"^^xsd:boolean ;
+                   :descripcion """Acuéstese con una pesa en la mano. Apunta la parte superior del brazo hacia arriba, con el codo flexionado en un ángulo de 90 grados. Enderezca el codo lentamente, moviendo la pesa hacia arriba. Luego, baje lentamente la pesa a la posición inicial.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                    :intensidad 2 ;
                    :nombre "extensión de triceps" .
 
@@ -486,6 +530,11 @@ owl:topDataProperty rdfs:domain :Persona .
                 :ejercita :Cadera ;
                 :aerobico "false"^^xsd:boolean ;
                 :calentamiento "false"^^xsd:boolean ;
+                :descripcion """Siéntese en el suelo con las piernas extendidas delante de ti y los brazos a lo largo del cuerpo.
+Eleve su pie derecho del suelo y coloque la punta del pie en el muslo izquierdo.
+Flexione su cadera derecha y coloca tu mano derecha en el suelo a tu lado derecho. Eleva tu brazo izquierdo hacia el techo y mire hacia arriba.
+Mantén la posición durante unos segundos, luego regresa a la posición inicial y repite con el otro lado.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                 :intensidad 1 ;
                 :nombre "flexión de cadera" .
 
@@ -496,6 +545,8 @@ owl:topDataProperty rdfs:domain :Persona .
                  :ejercita :Cuello_Hombros ;
                  :aerobico "false"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
+                 :descripcion """Párese de frente a una pared. Lentamente camine hacia arriba con los dedos de la mano por la pared hasta que sienta un estiramiento. Sostenga el estiramiento unos 15 segundos. Regrese a la posición original de pie.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                  :intensidad 2 ;
                  :nombre "flexión de hombros" .
 
@@ -508,17 +559,24 @@ owl:topDataProperty rdfs:domain :Persona .
                            :Pies_Tobillos ;
                  :aerobico "false"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
+                 :descripcion """Siéntese en la cama o en el piso con la pierna derecha extendida. Doble ligeramente la rodilla izquierda.
+Flexione el pie derecho, empujando el talón hacia adelante y trayendo los dedos del pie hacia usted. Sostenga esta posición durante 5 segundos.
+Mueva el pie en la dirección contraria, apuntando los dedos del pie hacia adelante. Sostenga esta posición durante 5 segundos.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                  :intensidad 2 ;
                  :nombre "flexión plantar" .
 
 
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Flexion_rodilla
 :Flexion_rodilla rdf:type owl:NamedIndividual ,
-                          :Equilibrio ,
-                          :Fuerza ;
+                          :Equilibrio ;
                  :ejercita :Piernas ;
                  :aerobico "false"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
+                 :descripcion """Sientese en una silla con piernas a lo ancho de la cadera i espalda recta.
+Estire la rodilla derecha lentament por unos segunes un total de 5 repeticiones.
+Repita con la rodilla izquierda.
+Repita el ejercicio durante un conjunto establecido de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                  :intensidad 2 ;
                  :nombre "flexion de rodilla" .
 
@@ -530,6 +588,8 @@ owl:topDataProperty rdfs:domain :Persona .
                           :Lumbar_Espalda ;
                 :aerobico "false"^^xsd:boolean ;
                 :calentamiento "false"^^xsd:boolean ;
+                :descripcion """Tumbado boca arriba y con las manos detrás de las orejas, flexione el tronco ligeramente dejando la parte baja de la espalda siempre en contacto con el suelo. Si sube demasiado sentirá como trabaja la parte anterior del muslo más cercana a la cadera. Nunca lleve la barbilla al pecho.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                 :intensidad 1 ;
                 :nombre "flexión de tronco" .
 
@@ -580,6 +640,8 @@ owl:topDataProperty rdfs:domain :Persona .
                  :ejercita :Brazos ;
                  :aerobico "false"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
+                 :descripcion """Sostenga una mancuerna en cada mano y coloca las palmas en dirección al cuerpo. Mantenga los codos apenas doblados, levanta los brazos hacia los costados hasta que las mancuernas estén a la altura del pecho y, luego, bájelos nuevamente hasta la posición de inicio.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                  :intensidad 2 ;
                  :nombre "levantamiento de brazos" .
 
@@ -587,9 +649,15 @@ owl:topDataProperty rdfs:domain :Persona .
 ###  http://www.semanticweb.org/mique/ontologies/2022/10/ontologia_practica_avis#Levantarse_de_una_silla
 :Levantarse_de_una_silla rdf:type owl:NamedIndividual ,
                                   :Fuerza ;
-                         :ejercita :Brazos ;
+                         :ejercita :Brazos ,
+                                   :Piernas ;
                          :aerobico "false"^^xsd:boolean ;
                          :calentamiento "false"^^xsd:boolean ;
+                         :descripcion """Siéntese en el borde de una silla con los pies apoyados en el suelo y los brazos a lo largo del cuerpo.
+Eleve su peso sobre tus talones y coloca tus manos en los brazos de la silla.
+Levante su cuerpo y use sus manos para empujarte hacia arriba y levantarte de la silla. Una vez que estés de pie, asegúrese de mantener su espalda recta y sus hombros hacia atrás.
+Cuando esté listo para sentarte de nuevo, sienta tu peso sobre tus talones y use sus manos para apoyarte mientras se sienta lentamente en la silla.
+Repita el ejercicio durante un conjunto 5 de repeticiones, luego descansa y repita hasta acabar las repeticiones.""" ;
                          :intensidad 3 ;
                          :nombre "Levantarse de una silla" .
 
@@ -629,6 +697,7 @@ owl:topDataProperty rdfs:domain :Persona .
                   :Pies_Tobillos ;
         :aerobico "true"^^xsd:boolean ;
         :calentamiento "false"^^xsd:boolean ;
+        :descripcion "Ande energicamente, recuerda minimizar la rotación de cadera, mantener los hombros hacia atrás i tener la espalda recta." ;
         :intensidad 3 ;
         :nombre "marcha" .
 
@@ -645,6 +714,7 @@ owl:topDataProperty rdfs:domain :Persona .
                     :Pies_Tobillos ;
           :aerobico "true"^^xsd:boolean ;
           :calentamiento "false"^^xsd:boolean ;
+          :descripcion "Nade en un cuerpo de agua como bién puede ser el mar o una piscina." ;
           :intensidad 4 ;
           :nombre "nadar" .
 
@@ -667,6 +737,7 @@ owl:topDataProperty rdfs:domain :Persona .
                        :Estiramiento_isquitibiales ,
                        :Estiramiento_pantorrillas ,
                        :Flexion_plantar ,
+                       :Levantarse_de_una_silla ,
                        :Marcha ,
                        :Natación ,
                        :Subir_escaleras ,
@@ -697,6 +768,7 @@ owl:topDataProperty rdfs:domain :Persona .
                            :Pies_Tobillos ;
                  :aerobico "true"^^xsd:boolean ;
                  :calentamiento "false"^^xsd:boolean ;
+                 :descripcion "Escoja un tramo de escaleras de su casa o de un parque i subalas manteniendo en todo momento la espalda recta. Cuando haya terminado con el tramo, bajelas y repita." ;
                  :intensidad 4 ;
                  :nombre "subir escaleras" .
 
@@ -711,6 +783,9 @@ owl:topDataProperty rdfs:domain :Persona .
                 :Piernas ;
       :aerobico "true"^^xsd:boolean ;
       :calentamiento "false"^^xsd:boolean ;
+      :descripcion """Para esta práctica le recomendamos ir a su gimnasio o bién mirar un video.
+(Video 1 (De pie) - https://www.youtube.com/watch?v=20Xwv2zSIhc)
+(Video 2 (En silla) - https://www.youtube.com/watch?v=vBXWOUXb_5g)""" ;
       :intensidad 2 ;
       :nombre "yoga" .
 
